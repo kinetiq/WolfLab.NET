@@ -1,7 +1,7 @@
-﻿using EatVillagers.Village.Logic.Models;
-using EatVillagers.Village.Logic.Models.Enums;
+﻿using EatVillagers.WolfLab.Logic.Models;
+using EatVillagers.WolfLab.Logic.Models.Enums;
 
-namespace EatVillagers.Village.Logic.RoleStrategies
+namespace EatVillagers.WolfLab.Logic.RoleStrategies
 {
     public abstract class RoleBase
     {

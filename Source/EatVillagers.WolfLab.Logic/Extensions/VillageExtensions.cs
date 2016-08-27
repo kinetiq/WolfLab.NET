@@ -1,10 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using EatVillagers.Village.Logic.Models;
-using EatVillagers.Village.Logic.Models.Enums;
+using EatVillagers.WolfLab.Logic.Models;
+using EatVillagers.WolfLab.Logic.Models.Enums;
 using Z.Core.Extensions;
 
-namespace EatVillagers.Village.Logic.Extensions
+namespace EatVillagers.WolfLab.Logic.Extensions
 {
     public static class VillageExtensions
     {

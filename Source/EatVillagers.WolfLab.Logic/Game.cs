@@ -1,14 +1,14 @@
 ﻿using System;
 using System.Drawing;
-using EatVillagers.Village.Logic.Analytics;
-using EatVillagers.Village.Logic.Extensions;
-using EatVillagers.Village.Logic.Factories;
-using EatVillagers.Village.Logic.GameLogic;
-using EatVillagers.Village.Logic.Graphics;
-using EatVillagers.Village.Logic.Models;
+using EatVillagers.WolfLab.Logic.Analytics;
+using EatVillagers.WolfLab.Logic.Extensions;
+using EatVillagers.WolfLab.Logic.Factories;
+using EatVillagers.WolfLab.Logic.GameLogic;
+using EatVillagers.WolfLab.Logic.Graphics;
+using EatVillagers.WolfLab.Logic.Models;
 using Console = Colorful.Console;
 
-namespace EatVillagers.Village.Logic
+namespace EatVillagers.WolfLab.Logic
 {
     public class Game
     {

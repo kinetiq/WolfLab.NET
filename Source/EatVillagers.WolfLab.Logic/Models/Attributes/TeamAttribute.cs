@@ -1,7 +1,7 @@
 ﻿using System;
-using EatVillagers.Village.Logic.Models.Enums;
+using EatVillagers.WolfLab.Logic.Models.Enums;
 
-namespace EatVillagers.Village.Logic.Models.Attributes
+namespace EatVillagers.WolfLab.Logic.Models.Attributes
 {
     public class EvilTeamAttribute : TeamAttribute
     {

@@ -1,4 +1,4 @@
-﻿namespace EatVillagers.Village.Logic.Models.Enums
+﻿namespace EatVillagers.WolfLab.Logic.Models.Enums
 {
     public enum Levels 
     {

@@ -1,7 +1,7 @@
 ﻿using System;
-using EatVillagers.Village.Logic.Models.Enums;
+using EatVillagers.WolfLab.Logic.Models.Enums;
 
-namespace EatVillagers.Village.Logic.Extensions
+namespace EatVillagers.WolfLab.Logic.Extensions
 {
     public static class LevelExtensions
     {

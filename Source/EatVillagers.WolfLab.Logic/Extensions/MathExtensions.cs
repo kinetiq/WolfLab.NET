@@ -1,4 +1,4 @@
-﻿namespace EatVillagers.Village.Logic.Extensions
+﻿namespace EatVillagers.WolfLab.Logic.Extensions
 {
     public static class MathExtensions
     {

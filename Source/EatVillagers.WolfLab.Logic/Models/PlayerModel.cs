@@ -1,10 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using EatVillagers.Village.Logic.Extensions;
-using EatVillagers.Village.Logic.Models.Enums;
-using EatVillagers.Village.Logic.RoleStrategies;
+using EatVillagers.WolfLab.Logic.Extensions;
+using EatVillagers.WolfLab.Logic.Models.Enums;
+using EatVillagers.WolfLab.Logic.RoleStrategies;
 
-namespace EatVillagers.Village.Logic.Models
+namespace EatVillagers.WolfLab.Logic.Models
 {
     public class PlayerModel
     {

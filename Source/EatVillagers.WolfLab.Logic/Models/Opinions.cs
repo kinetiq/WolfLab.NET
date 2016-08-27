@@ -1,6 +1,6 @@
-﻿using EatVillagers.Village.Logic.Extensions;
+﻿using EatVillagers.WolfLab.Logic.Extensions;
 
-namespace EatVillagers.Village.Logic.Models
+namespace EatVillagers.WolfLab.Logic.Models
 {
     public class GoodOpinion
     {

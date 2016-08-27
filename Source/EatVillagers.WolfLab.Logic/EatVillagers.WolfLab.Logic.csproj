@@ -7,8 +7,8 @@
     <ProjectGuid>{C2D89852-8368-4355-9797-6A006AC24335}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>EatVillagers.Village.Logic</RootNamespace>
-    <AssemblyName>EatVillagers.Village.Logic</AssemblyName>
+    <RootNamespace>EatVillagers.WolfLab.Logic</RootNamespace>
+    <AssemblyName>EatVillagers.WolfLab.Logic</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>

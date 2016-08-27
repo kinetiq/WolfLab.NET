@@ -1,8 +1,8 @@
-﻿using EatVillagers.Village.Logic.Extensions;
-using EatVillagers.Village.Logic.Models;
-using EatVillagers.Village.Logic.RoleStrategies;
+﻿using EatVillagers.WolfLab.Logic.Extensions;
+using EatVillagers.WolfLab.Logic.Models;
+using EatVillagers.WolfLab.Logic.RoleStrategies;
 
-namespace EatVillagers.Village.Logic.GameLogic.TrialSystems
+namespace EatVillagers.WolfLab.Logic.GameLogic.TrialSystems
 {
     public abstract class TrialBase
     {

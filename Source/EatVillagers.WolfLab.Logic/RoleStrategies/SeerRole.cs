@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Linq;
-using EatVillagers.Village.Logic.Analytics;
-using EatVillagers.Village.Logic.Extensions;
-using EatVillagers.Village.Logic.Models;
-using EatVillagers.Village.Logic.Models.Enums;
+using EatVillagers.WolfLab.Logic.Analytics;
+using EatVillagers.WolfLab.Logic.Extensions;
+using EatVillagers.WolfLab.Logic.Models;
+using EatVillagers.WolfLab.Logic.Models.Enums;
 
-namespace EatVillagers.Village.Logic.RoleStrategies
+namespace EatVillagers.WolfLab.Logic.RoleStrategies
 {
     class SeerRole : RoleBase
     {

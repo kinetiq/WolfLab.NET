@@ -1,6 +1,6 @@
-﻿using EatVillagers.Village.Logic.Models.Attributes;
+﻿using EatVillagers.WolfLab.Logic.Models.Attributes;
 
-namespace EatVillagers.Village.Logic.Models.Enums
+namespace EatVillagers.WolfLab.Logic.Models.Enums
 {
     public enum Roles
     {

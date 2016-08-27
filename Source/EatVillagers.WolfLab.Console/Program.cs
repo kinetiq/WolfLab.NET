@@ -1,7 +1,7 @@
-﻿using EatVillagers.Village.Logic;
-using EatVillagers.Village.Logic.Factories;
+﻿using EatVillagers.WolfLab.Logic;
+using EatVillagers.WolfLab.Logic.Factories;
 
-namespace EatVillagers.Village.Console
+namespace EatVillagers.WolfLab.Console
 {
     class Program
     {

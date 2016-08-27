@@ -1,9 +1,9 @@
 ﻿using System;
-using EatVillagers.Village.Logic.Extensions;
-using EatVillagers.Village.Logic.Factories;
-using EatVillagers.Village.Logic.Models;
+using EatVillagers.WolfLab.Logic.Extensions;
+using EatVillagers.WolfLab.Logic.Factories;
+using EatVillagers.WolfLab.Logic.Models;
 
-namespace EatVillagers.Village.Logic.GameLogic
+namespace EatVillagers.WolfLab.Logic.GameLogic
 {
     public class NightLogic
     {

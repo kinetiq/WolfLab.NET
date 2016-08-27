@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using EatVillagers.Village.Logic.Models;
-using EatVillagers.Village.Logic.Models.Attributes;
-using EatVillagers.Village.Logic.Models.Enums;
+using EatVillagers.WolfLab.Logic.Models;
+using EatVillagers.WolfLab.Logic.Models.Attributes;
+using EatVillagers.WolfLab.Logic.Models.Enums;
 using Z.Core.Extensions;
 using Z.Reflection.Extensions;
 
-namespace EatVillagers.Village.Logic.Extensions
+namespace EatVillagers.WolfLab.Logic.Extensions
 {
     public static class PlayerExtensions
     {

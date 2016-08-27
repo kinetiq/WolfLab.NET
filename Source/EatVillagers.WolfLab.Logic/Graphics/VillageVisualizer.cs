@@ -2,13 +2,13 @@
 using System.Drawing;
 using System.Linq;
 using Colorful;
-using EatVillagers.Village.Logic.Extensions;
-using EatVillagers.Village.Logic.Models;
-using EatVillagers.Village.Logic.Models.Enums;
+using EatVillagers.WolfLab.Logic.Extensions;
+using EatVillagers.WolfLab.Logic.Models;
+using EatVillagers.WolfLab.Logic.Models.Enums;
 using Console = Colorful.Console;
 
 
-namespace EatVillagers.Village.Logic.Graphics
+namespace EatVillagers.WolfLab.Logic.Graphics
 {
     public class VillageVisualizer
     {

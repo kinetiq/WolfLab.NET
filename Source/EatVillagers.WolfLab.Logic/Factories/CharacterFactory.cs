@@ -1,9 +1,9 @@
 ﻿using System;
-using EatVillagers.Village.Logic.Models;
-using EatVillagers.Village.Logic.Models.Enums;
-using EatVillagers.Village.Logic.RoleStrategies;
+using EatVillagers.WolfLab.Logic.Models;
+using EatVillagers.WolfLab.Logic.Models.Enums;
+using EatVillagers.WolfLab.Logic.RoleStrategies;
 
-namespace EatVillagers.Village.Logic.Factories
+namespace EatVillagers.WolfLab.Logic.Factories
 {
     public class CharacterFactory
     {

@@ -7,8 +7,8 @@
     <ProjectGuid>{B2616818-3F31-403D-96FE-A52B4F6652B1}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>EatVillagers.Village.Console</RootNamespace>
-    <AssemblyName>EatVillagers.Village.Console</AssemblyName>
+    <RootNamespace>EatVillagers.WolfLab.Console</RootNamespace>
+    <AssemblyName>EatVillagers.WolfLab.Console</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>

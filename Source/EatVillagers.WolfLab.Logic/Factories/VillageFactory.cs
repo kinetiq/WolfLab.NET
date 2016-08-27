@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Linq;
-using EatVillagers.Village.Logic.Extensions;
-using EatVillagers.Village.Logic.GameLogic.TrialSystems;
-using EatVillagers.Village.Logic.Models;
-using EatVillagers.Village.Logic.Models.Enums;
+using EatVillagers.WolfLab.Logic.Extensions;
+using EatVillagers.WolfLab.Logic.GameLogic.TrialSystems;
+using EatVillagers.WolfLab.Logic.Models;
+using EatVillagers.WolfLab.Logic.Models.Enums;
 
-namespace EatVillagers.Village.Logic.Factories
+namespace EatVillagers.WolfLab.Logic.Factories
 {
     public class VillageFactory
     {

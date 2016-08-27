@@ -1,4 +1,4 @@
-﻿namespace EatVillagers.Village.Logic.Analytics
+﻿namespace EatVillagers.WolfLab.Logic.Analytics
 {
     /// <summary>
     /// Singleton used to record gameplay statistics.

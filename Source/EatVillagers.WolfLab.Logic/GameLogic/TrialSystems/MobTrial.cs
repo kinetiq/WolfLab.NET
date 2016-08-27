@@ -1,10 +1,10 @@
 using System;
 using System.Linq;
-using EatVillagers.Village.Logic.Analytics;
-using EatVillagers.Village.Logic.Extensions;
-using EatVillagers.Village.Logic.Models;
+using EatVillagers.WolfLab.Logic.Analytics;
+using EatVillagers.WolfLab.Logic.Extensions;
+using EatVillagers.WolfLab.Logic.Models;
 
-namespace EatVillagers.Village.Logic.GameLogic.TrialSystems
+namespace EatVillagers.WolfLab.Logic.GameLogic.TrialSystems
 {
     public class MobTrial : TrialBase
     {

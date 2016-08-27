@@ -1,7 +1,7 @@
 using System.Collections.Generic;
-using EatVillagers.Village.Logic.GameLogic.TrialSystems;
+using EatVillagers.WolfLab.Logic.GameLogic.TrialSystems;
 
-namespace EatVillagers.Village.Logic.Models
+namespace EatVillagers.WolfLab.Logic.Models
 {
     public class VillageModel
     {
