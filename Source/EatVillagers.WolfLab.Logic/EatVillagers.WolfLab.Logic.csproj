@@ -34,6 +34,10 @@
       <HintPath>..\packages\Colorful.Console.1.0.5\lib\net452\Colorful.Console.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="CsvHelper, Version=2.0.0.0, Culture=neutral, PublicKeyToken=8c4959082be5c823, processorArchitecture=MSIL">
+      <HintPath>..\packages\CsvHelper.2.16.0.0\lib\net45\CsvHelper.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Ether.Outcomes, Version=2.6.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Ether.Outcomes.2.6.0-alpha\lib\Ether.Outcomes.dll</HintPath>
       <Private>True</Private>
@@ -61,8 +65,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Analytics\Experiment.cs" />
+    <Compile Include="Analytics\DataTags.cs" />
     <Compile Include="Analytics\LogSingleton.cs" />
     <Compile Include="Analytics\Stats.cs" />
+    <Compile Include="Analytics\StatsSingleton.cs" />
     <Compile Include="Extensions\ListExtensions.cs" />
     <Compile Include="Extensions\MathExtensions.cs" />
     <Compile Include="Extensions\PlayerExtensions.cs" />

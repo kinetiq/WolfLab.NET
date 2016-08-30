@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Drawing;
+using System.Net;
 using EatVillagers.WolfLab.Logic.Analytics;
 using EatVillagers.WolfLab.Logic.Extensions;
 using EatVillagers.WolfLab.Logic.Factories;
@@ -35,49 +36,85 @@ namespace EatVillagers.WolfLab.Logic
                 Day++;
                 ExecuteTurn();
 
-                Console.WriteLine();
-                DrawVillage();
+                WriteRoundResult();
+            } while(!IsGameOver());
 
-                Console.WriteLine();
-                Console.WriteLine();
-                Console.WriteLine("Press any key...", Color.Gray);
-                Console.ReadKey();  
-            } while(!GameOver());
+            //Logging
+            if (Village.HasWerewolves())
+                Log.EvilVictory();
+            else
+                Log.GoodVictory();
+
+            WriteGameResult();
+        }
+
+        private void WriteRoundResult()
+        {
+            if (Options.ComputationMode)
+                return;
 
             Console.WriteLine();
+            DrawVillage();
 
+            Console.WriteLine();
+            Console.WriteLine();
+            Console.WriteLine("Press any key...", Color.Gray);
+            Console.ReadKey();
+        }
+
+        private void WriteGameResult()
+        {
+            if (Options.ComputationMode)
+                return;
+
+            Console.WriteLine();
             Console.WriteLine(Village.HasWerewolves()
-                ? $"Werewolves win by parity, with {Village.LivingEvilPlayers().Count} wol(ves) remaining!"
-                : $"Village wins, with {Village.LivingGoodPlayers().Count} alive!");
+            ? $"Werewolves win by parity, with {Village.LivingEvilPlayers().Count} wol(ves) remaining!"
+            : $"Village wins, with {Village.LivingGoodPlayers().Count} alive!");
 
             Console.WriteLine();
             Console.WriteLine("Press any key...", Color.Gray);
             Console.ReadKey();
         }
 
-        private void DrawVillage()
-        {
-            var visualizer = new VillageVisualizer();
-            visualizer.Show(Village.Players);
-        }
-
-        private bool GameOver()
+        private bool IsGameOver()
         {
             return Village.IsParity() || !Village.HasWerewolves();
         }
 
-        public void ExecuteTurn()
+        private void ExecuteTurn()
         {
             var dayLogic = new DayLogic(Options, Village, Rnd);
             var nightLogic = new NightLogic(Options, Village, Rnd);
 
             dayLogic.ExecuteDay();
-
-            Console.WriteLine();
-            Console.WriteLine($"*** DAYBREAK {Day} ***", Color.BlanchedAlmond);  
-            ShowLog();
+            ShowDayLog();
 
             nightLogic.ExecuteNight();
+            ShowNightLog();
+        }
+
+        private void ShowDayLog()
+        {
+            if (Options.ComputationMode)
+            {
+                Log.FlushTurnLog();
+                return;
+            }
+
+            Console.WriteLine();
+            Console.WriteLine($"*** DAYBREAK {Day} ***", Color.BlanchedAlmond);
+            Console.WriteLine();
+            ShowLog();
+        }
+
+        private void ShowNightLog()
+        {
+            if (Options.ComputationMode)
+            {
+                Log.FlushTurnLog();
+                return;
+            } 
 
             Console.WriteLine();
             Console.WriteLine($"*** NIGHTFALL {Day} *** ", Color.DimGray);
@@ -85,14 +122,18 @@ namespace EatVillagers.WolfLab.Logic
             ShowLog();
         }
 
-        public void ShowLog()
-        {
+        private void ShowLog()
+        {               
             var turnLog = Log.FlushTurnLog();
 
             foreach (var entry in turnLog)
-            {
                 Console.WriteLine(entry);
-            }
+        }
+
+        private void DrawVillage()
+        {
+            var visualizer = new VillageVisualizer();
+            visualizer.Show(Village.Players);
         }
     }
 }

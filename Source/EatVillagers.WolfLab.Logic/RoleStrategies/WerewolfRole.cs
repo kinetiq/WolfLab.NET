@@ -34,7 +34,10 @@ namespace EatVillagers.WolfLab.Logic.RoleStrategies
             var wolf = Player;
 
             if (wolf != village.LeadWerewolf()) //the smartest wolf will control the eating.
-                return; 
+                return;
+
+            if (wolf.OtherGoodLivingPlayers().Count == 0)
+                return;
           
             var target = wolf.GetYummiest();
             Log.Write($"The wolves devour {target.Name}, a {target.Role}.");

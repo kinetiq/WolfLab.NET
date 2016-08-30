@@ -40,5 +40,20 @@ namespace EatVillagers.WolfLab.Logic.Analytics
 
             return result;
         }
+
+        public static void ClearTurnLog()
+        {
+            LogSingleton.Instance.TurnLog.Clear();
+        }
+
+        public static void GoodVictory()
+        {
+            Stats.CurrentExperiment.GoodWins++;
+        }
+
+        public static void EvilVictory()
+        {
+            Stats.CurrentExperiment.EvilWins++;
+        }
     }
 }
