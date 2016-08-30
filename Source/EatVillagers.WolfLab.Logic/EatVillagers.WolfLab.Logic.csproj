@@ -65,6 +65,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Analytics\ApplyTagsService.cs" />
     <Compile Include="Analytics\Experiment.cs" />
     <Compile Include="Analytics\DataTags.cs" />
     <Compile Include="Analytics\LogSingleton.cs" />
@@ -75,6 +76,8 @@
     <Compile Include="Extensions\PlayerExtensions.cs" />
     <Compile Include="Extensions\VillageExtensions.cs" />
     <Compile Include="Factories\CharacterFactory.cs" />
+    <Compile Include="Factories\NextList.cs" />
+    <Compile Include="Factories\PlayerFactory.cs" />
     <Compile Include="Factories\SkillBuilder.cs" />
     <Compile Include="Factories\VillageFactory.cs" />
     <Compile Include="Factories\GameOptions.cs" />
@@ -88,6 +91,7 @@
     <Compile Include="Graphics\VillageVisualizer.cs" />
     <Compile Include="Extensions\LevelExtensions.cs" />
     <Compile Include="Models\Enums\Levels.cs" />
+    <Compile Include="Models\Enums\Traits.cs" />
     <Compile Include="Models\Enums\TrialTypes.cs" />
     <Compile Include="Models\PlayerModel.cs" />
     <Compile Include="Models\Opinions.cs" />
@@ -99,6 +103,7 @@
     <Compile Include="RoleStrategies\HunterRole.cs" />
     <Compile Include="RoleStrategies\RoleBase.cs" />
     <Compile Include="RoleStrategies\SeerRole.cs" />
+    <Compile Include="RoleStrategies\SpectatorRole.cs" />
     <Compile Include="RoleStrategies\VillagerRole.cs" />
     <Compile Include="RoleStrategies\WerewolfRole.cs" />
   </ItemGroup>

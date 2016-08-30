@@ -19,6 +19,14 @@ namespace EatVillagers.WolfLab.Logic.Models.Attributes
         }
     }
 
+    public class NoTeamAttribute : TeamAttribute
+    {
+        public NoTeamAttribute()
+        {
+            base.Team = Teams.Spectator;
+        }
+    }
+
     public abstract class TeamAttribute : Attribute
     {
         public Teams Team { get; set; }

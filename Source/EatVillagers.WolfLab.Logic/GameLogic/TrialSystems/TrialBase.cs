@@ -21,7 +21,7 @@ namespace EatVillagers.WolfLab.Logic.GameLogic.TrialSystems
 
             foreach (var p in defendant.OtherGoodLivingPlayers())
             {
-                var o = p.GetGoodOpinionOf(defendant);
+                var o = p.GetOpinionOf(defendant);
                 o.Aggro += impact.OpinionShift;
             }
 

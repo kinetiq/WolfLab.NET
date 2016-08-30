@@ -10,6 +10,9 @@ namespace EatVillagers.WolfLab.Logic.Models.Enums
         [GoodTeam]
         Seer,
 
+        [NoTeam]
+        Spectator,
+
         [GoodTeam]
         Hunter,
 

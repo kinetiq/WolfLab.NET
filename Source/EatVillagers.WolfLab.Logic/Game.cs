@@ -48,6 +48,26 @@ namespace EatVillagers.WolfLab.Logic
             WriteGameResult();
         }
 
+        #region "Turn Logic"
+        private void ExecuteTurn()
+        {
+            var dayLogic = new DayLogic(Options, Village, Rnd);
+            var nightLogic = new NightLogic(Options, Village, Rnd);
+
+            dayLogic.ExecuteDay();
+            ShowDayLog();
+
+            nightLogic.ExecuteNight();
+            ShowNightLog();
+        }
+        #endregion
+
+        private bool IsGameOver()
+        {
+            return Village.IsParity() || !Village.HasWerewolves();
+        }
+
+        #region "UI"
         private void WriteRoundResult()
         {
             if (Options.ComputationMode)
@@ -75,23 +95,6 @@ namespace EatVillagers.WolfLab.Logic
             Console.WriteLine();
             Console.WriteLine("Press any key...", Color.Gray);
             Console.ReadKey();
-        }
-
-        private bool IsGameOver()
-        {
-            return Village.IsParity() || !Village.HasWerewolves();
-        }
-
-        private void ExecuteTurn()
-        {
-            var dayLogic = new DayLogic(Options, Village, Rnd);
-            var nightLogic = new NightLogic(Options, Village, Rnd);
-
-            dayLogic.ExecuteDay();
-            ShowDayLog();
-
-            nightLogic.ExecuteNight();
-            ShowNightLog();
         }
 
         private void ShowDayLog()
@@ -135,5 +138,6 @@ namespace EatVillagers.WolfLab.Logic
             var visualizer = new VillageVisualizer();
             visualizer.Show(Village.Players);
         }
+        #endregion
     }
 }

@@ -23,16 +23,21 @@ namespace EatVillagers.WolfLab.Logic.Analytics
                 CompleteExperiment();
 
             CurrentExperiment = experiment;
+
             this.Stopwatch = Stopwatch.StartNew();
         }
 
         public void CompleteExperiment()
         {
+            var applyTags = new ApplyTagsService();
+
             if (!Stopwatch.IsRunning || CurrentExperiment == null)
                 throw new InvalidOperationException("Cannot complete an experiment when no experiment is running.");
 
             Stopwatch.Stop();
             CurrentExperiment.Duration = Stopwatch.ElapsedMilliseconds;
+
+            applyTags.Apply(CurrentExperiment);
 
             Experiments.Add(CurrentExperiment);
             CurrentExperiment = null;

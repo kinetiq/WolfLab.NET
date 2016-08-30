@@ -3,6 +3,7 @@
     public enum Teams
     {
         Good,
-        Evil
+        Evil,
+        Spectator
     }
 }

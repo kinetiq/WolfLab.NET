@@ -73,15 +73,15 @@ namespace EatVillagers.WolfLab.Logic.RoleStrategies
             //Seer is cleared for all good players.
             foreach (var p in seer.OtherGoodLivingPlayers())
             {
-                var opinion = p.GetGoodOpinionOf(seer);
+                var opinion = p.GetOpinionOf(seer);
                 opinion.Aggro = 0;
                 opinion.IsCleared = true;
                 opinion.IsEvil = false;
 
-                //set the opinion of the wolf.
+                //for each good player, set the opinion of the wolf.
                 foreach (var wolf in seer.ScannedWolves())
                 {
-                    var wolfOpinion = p.GetGoodOpinionOf(wolf);
+                    var wolfOpinion = p.GetOpinionOf(wolf);
                     wolfOpinion.IsCleared = false;
                     wolfOpinion.IsEvil = true;
                     wolfOpinion.Aggro = 1;
@@ -103,7 +103,7 @@ namespace EatVillagers.WolfLab.Logic.RoleStrategies
             if (target == null) //everyone has been scanned!
                 return;
 
-            var opinion = seer.GetGoodOpinionOf(target);
+            var opinion = seer.GetOpinionOf(target);
 
             var isPositive = (target.Role == Roles.Werewolf);
             var scanText = isPositive ? "WEREWOLF!" : "not a wolf";

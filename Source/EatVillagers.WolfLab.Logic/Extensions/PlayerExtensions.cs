@@ -26,19 +26,14 @@ namespace EatVillagers.WolfLab.Logic.Extensions
             if (player == target)
                 return false;
 
+            var opinion = player.GetOpinionOf(target);
+
             switch (player.Team())
             {
                 case Teams.Good:
-                {
-                    var o = player.GetGoodOpinionOf(target);
-                    return (!o.IsCleared && o.Aggro > .6m); //TODO: more interesting threshold
-                }
+                    return (!opinion.IsCleared && opinion.Aggro > .6m); //TODO: more interesting threshold
                 case Teams.Evil:
-                {
-                    var o = player.GetOpinionOf(target);
-                
-                    return (!o.IsEvil);
-                }
+                    return (!opinion.IsEvil);
                 default:
                     throw new InvalidOperationException();
             }
@@ -60,13 +55,6 @@ namespace EatVillagers.WolfLab.Logic.Extensions
             shadiest.IsAlive = false;
 
             return shadiest;
-        }
-
-        public static Opinion GetGoodOpinionOf(this PlayerModel player, PlayerModel target)
-        {
-            return player.Village
-                         .Opinions
-                         .Single(x => x.Owner == player && x.Target == target);
         }
 
         public static PlayerModel GetBestSeerCandidate(this PlayerModel player)
@@ -214,7 +202,7 @@ namespace EatVillagers.WolfLab.Logic.Extensions
         {
             return player.Village
                          .Players
-                         .Where(x => x != player && x.IsAlive && player.Team() == Teams.Good)
+                         .Where(x => x != player && x.IsAlive && x.Team() == Teams.Good)
                          .ToList();
         }
 
@@ -222,7 +210,7 @@ namespace EatVillagers.WolfLab.Logic.Extensions
         {
             return player.Village
                          .Players
-                         .Where(x => x != player && x.IsAlive && player.Team() == Teams.Evil)
+                         .Where(x => x != player && x.IsAlive && x.Team() == Teams.Evil)
                          .ToList();
         }
     }

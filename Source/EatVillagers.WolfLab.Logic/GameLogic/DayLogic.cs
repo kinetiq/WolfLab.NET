@@ -48,7 +48,7 @@ namespace EatVillagers.WolfLab.Logic.GameLogic
                 if (!slipNoticed)
                     continue;
 
-                var opinion = reactor.GetGoodOpinionOf(player);
+                var opinion = reactor.GetOpinionOf(player);
 
                 if (opinion.IsCleared)
                 {

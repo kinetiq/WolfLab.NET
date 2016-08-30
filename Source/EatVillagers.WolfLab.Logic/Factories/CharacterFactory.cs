@@ -18,60 +18,40 @@ namespace EatVillagers.WolfLab.Logic.Factories
             Rnd = rnd;
         }
 
-        public PlayerModel CreateSeer(int count)
+        public PlayerModel CreateSeer(PlayerModel player, int count)
         {
-            var result = new PlayerModel()
-            {
-                Name = $"S{count}",
-                Skill = SkillBuilder.GetSkill(Teams.Good, Options, Rnd),              
-                Village = Village
-            };
+            player.Name = $"S{count}";
+            player.Village = Village;
+            player.RoleLogic = new SeerRole(player);
 
-            result.RoleLogic = new SeerRole(result);
-
-            return result;
+            return player;
         }
 
-        public PlayerModel CreateHunter(int count)
+        public PlayerModel CreateHunter(PlayerModel player, int count)
         {
-            var result = new PlayerModel()
-            {
-                Name = $"H{count}",
-                Skill = SkillBuilder.GetSkill(Teams.Good, Options, Rnd),
-                Village = Village
-            };
+            player.Name = $"H{count}";
+            player.Village = Village;
+            player.RoleLogic = new HunterRole(player);
 
-            result.RoleLogic = new HunterRole(result);
-
-            return result;
+            return player;
         }
 
-        public PlayerModel CreateVillager(int count)
+        public PlayerModel CreateVillager(PlayerModel player, int count)
         {
-            var result = new PlayerModel()
-            {
-                Name = $"V{count}",
-                Skill = SkillBuilder.GetSkill(Teams.Good, Options, Rnd),
-                Village = Village
-            };
+            player.Name = $"V{count}";
+            player.Village = Village;
+            player.RoleLogic = new VillagerRole(player);
 
-            result.RoleLogic = new VillagerRole(result);
-
-            return result;
+            return player;
         }
 
-        public PlayerModel CreateWolf(int count)
+        public PlayerModel CreateWolf(PlayerModel player, int count)
         {
-            var result = new PlayerModel()
-            {
-                Name = $"W{count}",
-                Skill = SkillBuilder.GetSkill(Teams.Evil, Options, Rnd),
-                Village = Village
-            };
+            player.Name = $"W{count}";
+            player.Village = Village;
+            player.RoleLogic = new WerewolfRole(player);
 
-            result.RoleLogic = new WerewolfRole(result);
-
-            return result;
+            return player;
         }
     }
 }
