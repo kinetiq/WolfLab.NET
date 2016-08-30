@@ -23,8 +23,7 @@ namespace EatVillagers.WolfLab.Logic
         {
             Options = options;
             Rnd = new Random();           
-            Day = 0;
-            
+            Day = 0;   
         }
 
         public void ExecuteGameLoop()
