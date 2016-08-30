@@ -68,6 +68,7 @@
     <Compile Include="Analytics\ApplyTagsService.cs" />
     <Compile Include="Analytics\Experiment.cs" />
     <Compile Include="Analytics\DataTags.cs" />
+    <Compile Include="Analytics\Export\ExperimentMap.cs" />
     <Compile Include="Analytics\LogSingleton.cs" />
     <Compile Include="Analytics\Stats.cs" />
     <Compile Include="Analytics\StatsSingleton.cs" />

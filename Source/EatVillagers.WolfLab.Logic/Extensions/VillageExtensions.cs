@@ -69,13 +69,22 @@ namespace EatVillagers.WolfLab.Logic.Extensions
                           .FirstOrDefault();
         }
 
-        /// <summary>
-        /// Get the Seer (if present and alive).
-        /// </summary>
-        public static PlayerModel GetSeer(this VillageModel village)
+        public static int LivingCount(this VillageModel village, Roles role)
         {
             return village.Players
-                          .FirstOrDefault(x => x.Role == Roles.Seer && x.IsAlive);
+                          .Count(x => x.Role == role && x.IsAlive);
+        }
+
+        public static bool IsAnyAlive(this VillageModel village, Roles role)
+        {
+            return village.Players
+                          .Any(x => x.Role == role && x.IsAlive);
+        }
+
+        public static PlayerModel GetByRole(this VillageModel village, Roles role)
+        {
+            return village.Players
+                          .FirstOrDefault(x => x.Role == role && x.IsAlive);
         }
 
         public static bool IsParity(this VillageModel village)

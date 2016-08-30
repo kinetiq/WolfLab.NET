@@ -7,6 +7,7 @@ using EatVillagers.WolfLab.Logic.Factories;
 using EatVillagers.WolfLab.Logic.GameLogic;
 using EatVillagers.WolfLab.Logic.Graphics;
 using EatVillagers.WolfLab.Logic.Models;
+using EatVillagers.WolfLab.Logic.Models.Enums;
 using Console = Colorful.Console;
 
 namespace EatVillagers.WolfLab.Logic
@@ -40,7 +41,7 @@ namespace EatVillagers.WolfLab.Logic
             } while(!IsGameOver());
 
             //Logging
-            if (Village.HasWerewolves())
+            if (IsEvilVictory())
                 Log.EvilVictory();
             else
                 Log.GoodVictory();
@@ -61,6 +62,23 @@ namespace EatVillagers.WolfLab.Logic
             ShowNightLog();
         }
         #endregion
+
+        private bool IsEvilVictory()
+        {
+            //If evil is destroyed, the village wins.
+            if (Village.LivingPlayers().Count == 0)
+                return false;
+
+            if (Options.UseParityHunter && Village.IsAnyAlive(Roles.Hunter))
+            {
+                var evil = Village.LivingEvilPlayers().Count;
+                var hunters = Village.LivingCount(Roles.Hunter);
+
+                return (evil > hunters);
+            }
+
+            return Village.HasWerewolves();
+        }
 
         private bool IsGameOver()
         {
