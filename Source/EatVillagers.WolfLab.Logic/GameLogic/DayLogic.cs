@@ -56,8 +56,8 @@ namespace EatVillagers.WolfLab.Logic.GameLogic
                     continue;
                 }
 
-                opinion.Suspicion += level.ToSuspicionAmount();
-                Log.Write($"\t{reactor.Name} noticed, and is more suspicious of {player.Name} ({opinion.Suspicion * 100:0}%). ");                
+                opinion.Aggro += level.ToSuspicionAmount();
+                Log.Write($"\t{reactor.Name} noticed, and is more suspicious of {player.Name} ({opinion.Aggro * 100:0}%). ");                
             }            
         }
     }

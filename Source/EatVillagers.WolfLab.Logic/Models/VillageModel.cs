@@ -8,8 +8,7 @@ namespace EatVillagers.WolfLab.Logic.Models
         public List<PlayerModel> Players = new List<PlayerModel>();
         public int GameRound = 0;
         public List<string> Log;
-        public List<GoodOpinion> GoodOpinions = new List<GoodOpinion>();
-        public List<EvilOpinion> EvilOpinions = new List<EvilOpinion>();
+        public List<Opinion> Opinions = new List<Opinion>();
         public TrialBase TrialStrategy;
 
     }

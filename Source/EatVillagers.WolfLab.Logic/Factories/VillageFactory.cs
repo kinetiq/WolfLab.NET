@@ -29,7 +29,6 @@ namespace EatVillagers.WolfLab.Logic.Factories
             PopulateVillagers();
             PopulateOpinions();
 
-
             Village.Players = Village.Players.Shuffle().ToList();
             Village.TrialStrategy = GetTrialStrategy();
 
@@ -69,9 +68,9 @@ namespace EatVillagers.WolfLab.Logic.Factories
 
         public void PopulateOpinions()
         {
-            foreach (var source in Village.Players)
-                foreach (var target in Village.Players.Where(x => !x.Equals(source)))
-                   AddOpinion(source, target);
+            foreach (var owner in Village.Players)
+                foreach (var target in owner.OtherLivingPlayers())
+                   AddOpinion(owner, target);
         }
 
         private void AddOpinion(PlayerModel owner, PlayerModel target)
@@ -79,28 +78,17 @@ namespace EatVillagers.WolfLab.Logic.Factories
             if (owner.Equals(target))
                 throw new InvalidOperationException("This should never happen.");
 
-            switch (owner.Team())
+            var opinion = new Opinion()
             {
-                case Teams.Good:
-                    Village.GoodOpinions.Add(new GoodOpinion()
-                    {
-                        Owner = owner,
-                        Target = target
-                    });
+                Owner = owner,
+                Target = target,
+            };
 
-                    return;
-                case Teams.Evil:
-                    Village.EvilOpinions.Add(new EvilOpinion()
-                    {
-                        Owner = owner,
-                        Target = target,
-                        IsEvil = (target.Role == Roles.Werewolf)
-                    });
+            //Evil players know who the other evil people are.
+            if (owner.Team() == Teams.Evil)
+                opinion.IsEvil = (target.Team() == Teams.Evil);            
 
-                    return;
-                default:
-                    throw new InvalidOperationException("Unexpected Team: " + owner.Team());
-            }
+            Village.Opinions.Add(opinion);
         }
 
         public static VillageModel CreateVillage(GameOptions options, Random rnd)

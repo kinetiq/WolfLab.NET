@@ -65,8 +65,8 @@ namespace EatVillagers.WolfLab.Logic.RoleStrategies
             //Seer is top priority kill for all evil players.
             foreach (var p in village.LivingEvilPlayers())
             {
-                var opinion = p.GetEvilOpinionOf(seer);
-                opinion.EatPriority = 1;
+                var opinion = p.GetOpinionOf(seer);
+                opinion.Aggro = 1;
                 opinion.IsEvil = false;
             }
 
@@ -74,7 +74,7 @@ namespace EatVillagers.WolfLab.Logic.RoleStrategies
             foreach (var p in seer.OtherGoodLivingPlayers())
             {
                 var opinion = p.GetGoodOpinionOf(seer);
-                opinion.Suspicion = 0;
+                opinion.Aggro = 0;
                 opinion.IsCleared = true;
                 opinion.IsEvil = false;
 
@@ -84,7 +84,7 @@ namespace EatVillagers.WolfLab.Logic.RoleStrategies
                     var wolfOpinion = p.GetGoodOpinionOf(wolf);
                     wolfOpinion.IsCleared = false;
                     wolfOpinion.IsEvil = true;
-                    wolfOpinion.Suspicion = 1;
+                    wolfOpinion.Aggro = 1;
                 }
             }
         }
@@ -114,13 +114,13 @@ namespace EatVillagers.WolfLab.Logic.RoleStrategies
             {
                 opinion.IsCleared = false;
                 opinion.IsEvil = true;
-                opinion.Suspicion = 1;
+                opinion.Aggro = 1;
             }
             else
             {
                 opinion.IsCleared = true;
                 opinion.IsEvil = false;
-                opinion.Suspicion = 0;
+                opinion.Aggro = 0;
             }
         }
     }

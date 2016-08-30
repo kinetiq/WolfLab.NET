@@ -18,25 +18,6 @@ namespace EatVillagers.WolfLab.Logic.Models
         public bool IsClaimed { get; set; } = false;
         public VillageModel Village;
 
-        public List<PlayerModel> OtherLivingPlayers()
-        {
-            return Village.Players.Where(x => x != this).ToList();
-        }
-
-        public List<PlayerModel> OtherGoodLivingPlayers()
-        {
-            return Village.Players
-                          .Where(x => x != this && x.Team() == Teams.Good && x.IsAlive)
-                          .ToList();
-        }
-
-        public List<PlayerModel> OtherEvilLivingPlayers()
-        {
-            return Village.Players
-                          .Where(x => x != this && x.Team() == Teams.Evil && x.IsAlive)
-                          .ToList();
-        }
-
         public void Kill()
         {
             RoleLogic.Kill();

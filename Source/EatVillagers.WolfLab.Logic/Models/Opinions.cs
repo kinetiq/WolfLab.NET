@@ -2,35 +2,19 @@
 
 namespace EatVillagers.WolfLab.Logic.Models
 {
-    public class GoodOpinion
+    public class Opinion
     {
         public PlayerModel Owner;
         public PlayerModel Target;
-        private decimal m_Suspicion = .5M;
+        private decimal m_Aggro = .5M;
         public bool IsCleared = false;
         public bool IsEvil = false;
 
-        public decimal Suspicion
+        public decimal Aggro
         {
-            get { return m_Suspicion; }
+            get { return m_Aggro; }
 
-            set { m_Suspicion = value.UpperCap(1).LowerCap(0); }
+            set { m_Aggro = value.UpperCap(1).LowerCap(0); }
         }
     }
-
-    public class EvilOpinion
-    {
-        public PlayerModel Owner;
-        public PlayerModel Target;
-        private decimal m_EatPriority = 0.5M;
-        public bool IsEvil;
-
-        public decimal EatPriority
-        {
-            get { return m_EatPriority; }
-
-            set { m_EatPriority = value.UpperCap(1).LowerCap(0); }
-        }
-    }
-
 }

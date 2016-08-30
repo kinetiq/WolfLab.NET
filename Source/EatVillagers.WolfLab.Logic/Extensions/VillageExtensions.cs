@@ -61,7 +61,7 @@ namespace EatVillagers.WolfLab.Logic.Extensions
         /// <summary>
         /// The most skilled wolf will be calling the nightkills.
         /// </summary>
-        public static PlayerModel LeadWerewolf(this VillageModel village)
+        public static PlayerModel GetLeadWerewolf(this VillageModel village)
         {
             return village.Players
                           .Where(x => x.Role == Roles.Werewolf && x.IsAlive)
@@ -88,8 +88,7 @@ namespace EatVillagers.WolfLab.Logic.Extensions
 
         public static bool HasWerewolves(this VillageModel village)
         {
-            return village.Players.Any(x => x.IsAlive && 
-                                            x.Role == Roles.Werewolf);
+            return village.LivingWolvesCount() > 0;
         }
 
         public static int LivingWolvesCount(this VillageModel village)

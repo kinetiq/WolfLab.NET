@@ -21,13 +21,13 @@ namespace EatVillagers.WolfLab.Logic.GameLogic.TrialSystems
             //yet. We start with a random candidate and vote to kill.
 
             var candidates = Village.LivingPlayers()
-                                    .OrderByDescending(x => x.AverageSuspicion())
+                                    .OrderByDescending(x => x.AverageAggro())
                                     .ThenBy(x => new Guid()) //randomize ties
                                     .ToList();
 
             foreach (var candidate in candidates)
             {
-                Log.Write($"{candidate.Name} draws the attention of the mob... ({candidate.AverageSuspicion()} aggro)");
+                Log.Write($"{candidate.Name} draws the attention of the mob... ({candidate.AverageAggro()} aggro)");
 
                 var defenseResult = candidate.RoleLogic.ExecuteTrialDefense();
                 base.ApplyDefenseResult(defenseResult);

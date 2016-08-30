@@ -40,14 +40,14 @@ namespace EatVillagers.WolfLab.Logic.Graphics
             Console.WriteLine();
             Console.WriteLine("Net Aggro for living: ");
 
-            var stats = playersByTeam.Where(p => p.IsAlive).Select(p => p.Name + ": " + p.AverageSuspicion()).ToList();
+            var stats = playersByTeam.Where(p => p.IsAlive).Select(p => p.Name + ": " + p.AverageAggro()).ToList();
             Console.WriteLineStyled(string.Join(", ", stats), styleSheet);
 
             if (players.Any(p => !p.IsAlive))
             {
                 Console.WriteLine();
                 Console.WriteLine("Net Aggro for dead: ");
-                var deadStats = playersByTeam.Where(p => !p.IsAlive).Select(p => p.Name + ": " + p.AverageSuspicion()).ToList();
+                var deadStats = playersByTeam.Where(p => !p.IsAlive).Select(p => p.Name + ": " + p.AverageAggro()).ToList();
                 Console.WriteLineStyled(string.Join(", ", deadStats), styleSheet);
             }
 

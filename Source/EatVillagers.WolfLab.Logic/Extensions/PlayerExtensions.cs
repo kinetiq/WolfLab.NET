@@ -31,11 +31,11 @@ namespace EatVillagers.WolfLab.Logic.Extensions
                 case Teams.Good:
                 {
                     var o = player.GetGoodOpinionOf(target);
-                    return (!o.IsCleared && o.Suspicion > .6m); //TODO: more interesting threshold
+                    return (!o.IsCleared && o.Aggro > .6m); //TODO: more interesting threshold
                 }
                 case Teams.Evil:
                 {
-                    var o = player.GetEvilOpinionOf(target);
+                    var o = player.GetOpinionOf(target);
                 
                     return (!o.IsEvil);
                 }
@@ -44,19 +44,14 @@ namespace EatVillagers.WolfLab.Logic.Extensions
             }
         }
 
-        public static decimal AverageSuspicion(this PlayerModel player)
+        public static decimal AverageAggro(this PlayerModel player)
         {
             var village = player.Village;
-            var good = village.GoodOpinions
+
+            return  village.Opinions
                            .Where(x => x.Target == player && 
                                        x.Owner.IsAlive)
-                           .Sum(x => x.Suspicion);
-
-            var evil = village.EvilOpinions.Where(x => x.Target == player &&
-                                                       x.Owner.IsAlive)
-                                           .Sum(x => x.EatPriority);
-
-            return good + evil;
+                           .Sum(x => x.Aggro);
         }
 
         public static PlayerModel ExecuteBrutalKill(this PlayerModel player)
@@ -67,10 +62,10 @@ namespace EatVillagers.WolfLab.Logic.Extensions
             return shadiest;
         }
 
-        public static GoodOpinion GetGoodOpinionOf(this PlayerModel player, PlayerModel target)
+        public static Opinion GetGoodOpinionOf(this PlayerModel player, PlayerModel target)
         {
             return player.Village
-                         .GoodOpinions
+                         .Opinions
                          .Single(x => x.Owner == player && x.Target == target);
         }
 
@@ -78,12 +73,12 @@ namespace EatVillagers.WolfLab.Logic.Extensions
         {
             var village = player.Village;
 
-            var opinion = village.GoodOpinions
+            var opinion = village.Opinions
                                 .Where(o => o.Owner == player && 
                                                    o.Target.IsAlive && 
                                                    !o.IsCleared && 
                                                    !o.IsEvil)
-                                .OrderByDescending(o => o.Suspicion)
+                                .OrderByDescending(o => o.Aggro)
                                 .ThenByDescending(o => Guid.NewGuid()) //random tiebreaker
                                 .FirstOrDefault();
 
@@ -94,11 +89,11 @@ namespace EatVillagers.WolfLab.Logic.Extensions
         {
             var village = player.Village;
 
-            var target = village.GoodOpinions
+            var target = village.Opinions
                                 .Where(opinion => opinion.Owner == player &&
                                                   opinion.Target.IsAlive &&
                                                   !opinion.IsCleared)
-                                .OrderByDescending(opinion => opinion.Suspicion)
+                                .OrderByDescending(opinion => opinion.Aggro)
                                 .ThenByDescending(opinion => Guid.NewGuid()) //random tiebreaker
                                 .First()
                                 .Target;
@@ -110,11 +105,11 @@ namespace EatVillagers.WolfLab.Logic.Extensions
         {
             var village = player.Village;
 
-            var target = village.EvilOpinions
+            var target = village.Opinions
                                 .Where(opinion => opinion.Owner == player &&
                                                    opinion.IsEvil == false && 
                                                    opinion.Target.IsAlive)
-                                .OrderByDescending(opinion => opinion.EatPriority)
+                                .OrderByDescending(opinion => opinion.Aggro)
                                 .ThenByDescending(opinion => Guid.NewGuid()) //random tiebreaker
                                 .First()
                                 .Target;
@@ -122,10 +117,10 @@ namespace EatVillagers.WolfLab.Logic.Extensions
             return target;
         }
 
-        public static EvilOpinion GetEvilOpinionOf(this PlayerModel player, PlayerModel target)
+        public static Opinion GetOpinionOf(this PlayerModel player, PlayerModel target)
         {
             return player.Village
-                         .EvilOpinions
+                         .Opinions
                          .Single(x => x.Owner == player && x.Target == target);
         }
 
@@ -137,24 +132,13 @@ namespace EatVillagers.WolfLab.Logic.Extensions
                          .ToUpper();
         }
 
-        public static List<GoodOpinion> GoodOpinionsOfLiving(this PlayerModel player)
+        public static List<Opinion> GoodOpinionsOfLiving(this PlayerModel player)
         {
             if (player.Team() == Teams.Evil)
                 throw new InvalidOperationException("Evil players do not have GoodOpinions.");
 
             return player.Village
-                         .GoodOpinions
-                         .Where(x => x.Owner == player && x.Target.IsAlive)
-                         .ToList();
-        }
-
-        public static List<EvilOpinion> EvilOpinionsOfLiving(this PlayerModel player)
-        {
-            if (player.Team() == Teams.Good)
-                throw new InvalidOperationException("Good players do not have EvilOpinions.");
-
-            return player.Village
-                         .EvilOpinions
+                         .Opinions
                          .Where(x => x.Owner == player && x.Target.IsAlive)
                          .ToList();
         }
@@ -216,6 +200,30 @@ namespace EatVillagers.WolfLab.Logic.Extensions
                 return true;
 
             return false; 
+        }
+
+        public static List<PlayerModel> OtherLivingPlayers(this PlayerModel player)
+        {
+            return player.Village
+                         .Players
+                         .Where(x => x != player && x.IsAlive)
+                         .ToList();
+        }
+
+        public static List<PlayerModel> OtherGoodLivingPlayers(this PlayerModel player)
+        {
+            return player.Village
+                         .Players
+                         .Where(x => x != player && x.IsAlive && player.Team() == Teams.Good)
+                         .ToList();
+        }
+
+        public static List<PlayerModel> OtherEvilLivingPlayers(this PlayerModel player)
+        {
+            return player.Village
+                         .Players
+                         .Where(x => x != player && x.IsAlive && player.Team() == Teams.Evil)
+                         .ToList();
         }
     }
 }
