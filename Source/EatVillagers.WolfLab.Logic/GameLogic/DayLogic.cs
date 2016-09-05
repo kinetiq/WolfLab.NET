@@ -25,40 +25,9 @@ namespace EatVillagers.WolfLab.Logic.GameLogic
             foreach (var player in Village.LivingPlayers().Shuffle())
             {
                 player.RoleLogic.ExecuteDayAction();
-
-                var suspicionLevel = SuspicionGenerator.Generate(player, Rnd);  
-                HandleGoodResponseTSuspiciousBehavior(player, suspicionLevel);             
             }
 
             Village.TrialStrategy.ExecuteTrial();
-        }
-
-        private void HandleGoodResponseTSuspiciousBehavior(PlayerModel player, Levels level)
-        {
-            if (level == Levels.None)
-                return;
-
-            Log.Write("");
-            Log.Write($"{player.Name} makes a mistake and seems {level.ToDegree()} suspicious!");
-
-            foreach (var reactor in player.OtherGoodLivingPlayers())
-            {
-                var slipNoticed = PlayerChecks.CheckNoticeSlip(reactor, level, Rnd);
-
-                if (!slipNoticed)
-                    continue;
-
-                var opinion = reactor.GetOpinionOf(player);
-
-                if (opinion.IsCleared)
-                {
-                    Log.Write($"\t{reactor.Name} noticed, but thinks {player.Name} is clear.");
-                    continue;
-                }
-
-                opinion.Aggro += level.ToSuspicionAmount();
-                Log.Write($"\t{reactor.Name} noticed, and is more suspicious of {player.Name} ({opinion.Aggro * 100:0}%). ");                
-            }            
         }
     }
 }

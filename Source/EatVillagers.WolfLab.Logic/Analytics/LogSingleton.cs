@@ -46,6 +46,11 @@ namespace EatVillagers.WolfLab.Logic.Analytics
             LogSingleton.Instance.TurnLog.Clear();
         }
 
+        public static void ClearLog()
+        {
+            LogSingleton.Instance.GameLog.Clear();
+        }
+
         public static void GoodVictory()
         {
             Stats.CurrentExperiment.GoodWins++;

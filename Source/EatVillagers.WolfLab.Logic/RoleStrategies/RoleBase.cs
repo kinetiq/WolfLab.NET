@@ -1,4 +1,7 @@
-﻿using EatVillagers.WolfLab.Logic.Models;
+﻿using EatVillagers.WolfLab.Logic.Analytics;
+using EatVillagers.WolfLab.Logic.Extensions;
+using EatVillagers.WolfLab.Logic.GameLogic;
+using EatVillagers.WolfLab.Logic.Models;
 using EatVillagers.WolfLab.Logic.Models.Enums;
 
 namespace EatVillagers.WolfLab.Logic.RoleStrategies
@@ -16,9 +19,15 @@ namespace EatVillagers.WolfLab.Logic.RoleStrategies
 
         public virtual void ExecuteDayAction()
         {
-            //TODO: basic villager action.
+            //Okay, I'm a villager. What do I do?
+            //Determine an action. Observe, Question,  
+
+            var suspicionLevel = SuspicionGenerator.Generate(Player);
+            Responses.HandleGoodResponseToSuspiciousBehavior(Player, suspicionLevel);
+
             return;
         }
+        
 
         public virtual void ExecuteNightAction()
         {
@@ -33,17 +42,6 @@ namespace EatVillagers.WolfLab.Logic.RoleStrategies
         public virtual void Kill()
         {
             Player.IsAlive = false;
-        }
-    }
-
-    public class TrialImpact
-    {
-        public PlayerModel Defendant;
-        public decimal OpinionShift = 0;
-
-        public TrialImpact(PlayerModel defendant)
-        {
-            Defendant = defendant;
         }
     }
 }

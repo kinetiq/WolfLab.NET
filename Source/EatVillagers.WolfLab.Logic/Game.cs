@@ -34,6 +34,8 @@ namespace EatVillagers.WolfLab.Logic
             do
             {
                 Day++;
+                Village.Day = Day; //refactor
+
                 ExecuteTurn();
 
                 WriteRoundResult();
@@ -87,7 +89,7 @@ namespace EatVillagers.WolfLab.Logic
         #region "UI"
         private void WriteRoundResult()
         {
-            if (Options.ComputationMode)
+            if (Options.CrunchMode)
                 return;
 
             Console.WriteLine();
@@ -101,7 +103,7 @@ namespace EatVillagers.WolfLab.Logic
 
         private void WriteGameResult()
         {
-            if (Options.ComputationMode)
+            if (Options.CrunchMode)
                 return;
 
             Console.WriteLine();
@@ -116,7 +118,7 @@ namespace EatVillagers.WolfLab.Logic
 
         private void ShowDayLog()
         {
-            if (Options.ComputationMode)
+            if (Options.CrunchMode)
             {
                 Log.FlushTurnLog();
                 return;
@@ -130,7 +132,7 @@ namespace EatVillagers.WolfLab.Logic
 
         private void ShowNightLog()
         {
-            if (Options.ComputationMode)
+            if (Options.CrunchMode)
             {
                 Log.FlushTurnLog();
                 return;

@@ -14,7 +14,7 @@ namespace EatVillagers.WolfLab.Logic.Analytics
         public int Wolves { get; set; }
         public int GoodWins { get; set; }
         public int EvilWins { get; set; }
-        public List<DataTags> Tags = new List<DataTags>();
+        public List<DataTags> Tags = new List<DataTags>();        
         public long Duration { get; set; }
     }
 }

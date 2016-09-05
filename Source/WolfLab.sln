@@ -3,11 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EatVillagers.WolfLab.Console", "EatVillagers.WolfLab.Console\EatVillagers.WolfLab.Console.csproj", "{B2616818-3F31-403D-96FE-A52B4F6652B1}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WolfLab.Console", "EatVillagers.WolfLab.Console\WolfLab.Console.csproj", "{B2616818-3F31-403D-96FE-A52B4F6652B1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EatVillagers.WolfLab.Logic", "EatVillagers.WolfLab.Logic\EatVillagers.WolfLab.Logic.csproj", "{C2D89852-8368-4355-9797-6A006AC24335}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WolfLab.Logic", "EatVillagers.WolfLab.Logic\WolfLab.Logic.csproj", "{C2D89852-8368-4355-9797-6A006AC24335}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EatVillagers.WolfLab.Logic.Tests", "EatVillagers.WolfLab.Logic.Tests\EatVillagers.WolfLab.Logic.Tests.csproj", "{0192DD05-53C8-41FD-8639-2E9D4B46EDA0}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WolfLab.Logic.Tests", "EatVillagers.WolfLab.Logic.Tests\WolfLab.Logic.Tests.csproj", "{0192DD05-53C8-41FD-8639-2E9D4B46EDA0}"
+EndProject
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "WolfLab.Xml", "EatVillagers.WolfLab.Xml\WolfLab.Xml.vbproj", "{55224CD7-4057-40AC-94DD-9B9300942261}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WolfLab.Core", "WolfLab.Core\WolfLab.Core.csproj", "{37B7747E-B868-4CE4-B1E3-833F97039BAE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +31,14 @@ Global
 		{0192DD05-53C8-41FD-8639-2E9D4B46EDA0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0192DD05-53C8-41FD-8639-2E9D4B46EDA0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0192DD05-53C8-41FD-8639-2E9D4B46EDA0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{55224CD7-4057-40AC-94DD-9B9300942261}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{55224CD7-4057-40AC-94DD-9B9300942261}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{55224CD7-4057-40AC-94DD-9B9300942261}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{55224CD7-4057-40AC-94DD-9B9300942261}.Release|Any CPU.Build.0 = Release|Any CPU
+		{37B7747E-B868-4CE4-B1E3-833F97039BAE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{37B7747E-B868-4CE4-B1E3-833F97039BAE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{37B7747E-B868-4CE4-B1E3-833F97039BAE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{37B7747E-B868-4CE4-B1E3-833F97039BAE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

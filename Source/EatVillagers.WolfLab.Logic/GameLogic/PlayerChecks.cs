@@ -1,16 +1,17 @@
 ﻿using System;
 using EatVillagers.WolfLab.Logic.Models;
 using EatVillagers.WolfLab.Logic.Models.Enums;
+using NDiceBag;
 
 namespace EatVillagers.WolfLab.Logic.GameLogic
 {
     public class PlayerChecks
     {
-        public static bool CheckNoticeSlip(PlayerModel player, Levels level, Random rnd)
+        public static bool CheckNoticeSlip(PlayerModel player, Levels level)
         {
             level = InvertLevel(level); //a "high" should be "low" difficulty
             var difficulty = Difficulty(level);
-            var roll = rnd.Next(1, 101);
+            var roll = 1.d(100).Roll();
 
             return roll >= difficulty;
         }

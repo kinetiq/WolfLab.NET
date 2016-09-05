@@ -50,6 +50,10 @@
       <HintPath>..\packages\Humanizer.Core.2.1.0\lib\netstandard1.0\Humanizer.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="NDiceBag, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\NDiceBag.1.1.0\lib\net40\NDiceBag.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
@@ -85,13 +89,16 @@
     <Compile Include="Game.cs" />
     <Compile Include="GameLogic\DayLogic.cs" />
     <Compile Include="GameLogic\NightLogic.cs" />
+    <Compile Include="GameLogic\Responses.cs" />
     <Compile Include="GameLogic\SuspicionGenerator.cs" />
     <Compile Include="GameLogic\PlayerChecks.cs" />
     <Compile Include="GameLogic\TrialSystems\MobTrial.cs" />
     <Compile Include="GameLogic\TrialSystems\TrialBase.cs" />
     <Compile Include="Graphics\VillageVisualizer.cs" />
     <Compile Include="Extensions\LevelExtensions.cs" />
+    <Compile Include="Models\Attributes\QualityAttribute.cs" />
     <Compile Include="Models\Enums\Levels.cs" />
+    <Compile Include="Models\Enums\LynchRule.cs" />
     <Compile Include="Models\Enums\Traits.cs" />
     <Compile Include="Models\Enums\TrialTypes.cs" />
     <Compile Include="Models\PlayerModel.cs" />
@@ -105,6 +112,7 @@
     <Compile Include="RoleStrategies\RoleBase.cs" />
     <Compile Include="RoleStrategies\SeerRole.cs" />
     <Compile Include="RoleStrategies\SpectatorRole.cs" />
+    <Compile Include="GameLogic\TrialSystems\TrialImpact.cs" />
     <Compile Include="RoleStrategies\VillagerRole.cs" />
     <Compile Include="RoleStrategies\WerewolfRole.cs" />
   </ItemGroup>

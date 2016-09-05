@@ -9,9 +9,12 @@ namespace EatVillagers.WolfLab.Logic.Factories
         public int AverageSkill { get; set; } = 5;
         public int VillageSize { get; set; } = 8;
         public int WolfCount { get; set; } = 2;
-        public bool ComputationMode { get; set; } = false;
+        public bool CrunchMode { get; set; } = false;
 
         public bool UseParityHunter { get; set; } = false;
         public TrialTypes TrialType { get; set; } = TrialTypes.Mob;
+        public LynchRules LynchRules { get; set; } = LynchRules.NoRules;
+
+
     }
 }

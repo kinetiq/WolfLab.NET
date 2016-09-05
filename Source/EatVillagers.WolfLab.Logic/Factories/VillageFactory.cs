@@ -42,6 +42,7 @@ namespace EatVillagers.WolfLab.Logic.Factories
 
             Village.Players = Village.Players.Shuffle().ToList();
             Village.TrialStrategy = GetTrialStrategy();
+            Village.Options = Options;
 
             return Village;
         }

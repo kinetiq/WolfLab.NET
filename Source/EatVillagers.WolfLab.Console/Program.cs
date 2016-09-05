@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Drawing;
 using System.Linq;
+using EatVillagers.WolfLab.Console.ProjectLoader;
 using EatVillagers.WolfLab.Logic;
 using EatVillagers.WolfLab.Logic.Analytics;
 using EatVillagers.WolfLab.Logic.Factories;
- using Humanizer;
+using EatVillagers.WolfLab.Logic.Models.Enums;
+using Humanizer;
 
 namespace EatVillagers.WolfLab.Console
 {
@@ -12,43 +14,59 @@ namespace EatVillagers.WolfLab.Console
     {
         static void Main(string[] args)
         {
-            var options = new GameOptions() { ComputationMode = true };
-            var game = new Game(options);
+            var loader = new FileLoader();
+            var readOutcome = loader.Read(@"d:\experiment.txt");
 
-            
-
-            //options.VillageSize = 10;
-
-            for (var villagers = 4; villagers < 20; villagers++)
+            if (readOutcome.Failure)
             {
-                var maxWolves = (villagers/2) - 1;
+                Colorful.Console.Write(readOutcome.ToMultiLine(Environment.NewLine));
+                System.Console.WriteLine();
+                System.Console.WriteLine(@"Press any key...");
+                System.Console.ReadKey();
+            }
 
-                for (var wolves = 1; wolves <= maxWolves; wolves++)
+            var project = readOutcome.Value;
+            var options = project.InitializeOptions();
+            var game = new Game(options);
+ 
+            foreach (var exp in project.Experiments)
+            {
+                //Modify Options based on variables in experiment.
+                exp.UpdateGameOptions(options);
+
+                //TODO: refactor the hell out of all this.
+                for (var villagers = project.MinVillage; villagers < project.MaxVillage; villagers++)
                 {
-                    var experiment = new Experiment()
+                    var maxWolves = (villagers / 2) - 1;
+
+                    for (var wolves = 1; wolves <= maxWolves; wolves++)
                     {
-                        Name = $"{villagers}v versus {wolves}w",
-                        Villagers = villagers,
-                        Wolves = wolves
-                    };
+                        var experiment = new Experiment()
+                        {
+                            Name = $"{exp.Name}: {villagers}V versus {wolves}W",
+                            Villagers = villagers,
+                            Wolves = wolves
+                        };
 
-                    Stats.StartNewExperiment(experiment);
+                        Stats.StartNewExperiment(experiment);
 
-                    options.VillageSize = villagers + wolves;
-                    options.WolfCount = wolves;
+                        options.VillageSize = villagers + wolves;
+                        options.WolfCount = wolves;
 
-                    Colorful.Console.WriteLine("Running: " + experiment.Name);
+                        Colorful.Console.WriteLine("Experiment: " + experiment.Name);
 
-                    for (var i = 0; i < 1000; i++)
-                    {                        
-                        game.ExecuteGameLoop();
+                        for (var i = 0; i <= project.SampleSize; i++)
+                        {
+                            game.ExecuteGameLoop();
+                        }
+
+                        Stats.CompleteExperiment();
                     }
-
-                    Stats.CompleteExperiment();
                 }
             }
 
-      
+
+            //Statistics
             Stats.WriteExperiments("D:/wolf.csv");
             
             Colorful.Console.WriteLine($"Good wins: {Stats.GoodWins()} {Stats.GoodWinPercent() * 100:00.0}%");

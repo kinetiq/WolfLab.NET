@@ -64,7 +64,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ProjectLoader\ExperimentExtensions.cs" />
+    <Compile Include="ProjectLoader\FileLoader.cs" />
     <Compile Include="Program.cs" />
+    <Compile Include="ProjectLoader\ProjectExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -72,11 +75,20 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\EatVillagers.WolfLab.Logic\EatVillagers.WolfLab.Logic.csproj">
+    <ProjectReference Include="..\EatVillagers.WolfLab.Logic\WolfLab.Logic.csproj">
       <Project>{c2d89852-8368-4355-9797-6a006ac24335}</Project>
-      <Name>EatVillagers.Village.Logic</Name>
+      <Name>WolfLab.Logic</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\EatVillagers.WolfLab.Xml\WolfLab.Xml.vbproj">
+      <Project>{55224cd7-4057-40ac-94dd-9b9300942261}</Project>
+      <Name>WolfLab.Xml</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WolfLab.Core\WolfLab.Core.csproj">
+      <Project>{37b7747e-b868-4ce4-b1e3-833f97039bae}</Project>
+      <Name>WolfLab.Core</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

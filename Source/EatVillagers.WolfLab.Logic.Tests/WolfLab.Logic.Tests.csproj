@@ -54,9 +54,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\EatVillagers.WolfLab.Logic\EatVillagers.WolfLab.Logic.csproj">
+    <ProjectReference Include="..\EatVillagers.WolfLab.Logic\WolfLab.Logic.csproj">
       <Project>{c2d89852-8368-4355-9797-6a006ac24335}</Project>
-      <Name>EatVillagers.WolfLab.Logic</Name>
+      <Name>WolfLab.Logic</Name>
     </ProjectReference>
   </ItemGroup>
   <Choose>

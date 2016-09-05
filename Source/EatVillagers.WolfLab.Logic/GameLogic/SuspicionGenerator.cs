@@ -2,15 +2,18 @@
 using EatVillagers.WolfLab.Logic.Extensions;
 using EatVillagers.WolfLab.Logic.Models;
 using EatVillagers.WolfLab.Logic.Models.Enums;
+using NDiceBag;
 
 namespace EatVillagers.WolfLab.Logic.GameLogic
 {
     public class SuspicionGenerator
     {
-        public static Levels Generate(PlayerModel player, Random rnd)
+        public static Levels Generate(PlayerModel player)
         {
-            var topRange = GetTopRange(player);
-            var roll = rnd.Next(1, topRange);
+            var roll = 1.d(100)
+                        .Plus(player.Team() == Teams.Evil ? 10 : 0) //10% penalty for evil.
+                        .Minus(player.Skill) //0%-10% bonus for skill.
+                        .Roll();
 
             if (roll >= 95)
                 return Levels.High;
@@ -22,15 +25,6 @@ namespace EatVillagers.WolfLab.Logic.GameLogic
                 return Levels.Low;
 
             return Levels.None;
-        }
-
-        private static int GetTopRange(PlayerModel player)
-        {
-            //higher rolls are bad, skill reduces it.
-            if (player.Team() == Teams.Evil)
-                return 110 - player.Skill;
-
-            return 101 - player.Skill;
         }
     }
 }
