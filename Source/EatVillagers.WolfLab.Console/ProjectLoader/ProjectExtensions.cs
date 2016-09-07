@@ -11,7 +11,7 @@ namespace EatVillagers.WolfLab.Console.ProjectLoader
 {
     public static class ProjectExtensions
     {
-        public static GameOptions InitializeOptions(this ProjectModel project)
+        public static GameOptions InitializeGameOptions(this ProjectModel project)
         {
             var options = new GameOptions()
             {
