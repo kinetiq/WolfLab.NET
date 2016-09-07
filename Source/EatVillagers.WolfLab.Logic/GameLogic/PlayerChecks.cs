@@ -1,7 +1,7 @@
 ﻿using System;
 using EatVillagers.WolfLab.Logic.Models;
 using EatVillagers.WolfLab.Logic.Models.Enums;
-using NDiceBag;
+using EatVillagers.WolfLab.Logic.RandomNumbers;
 
 namespace EatVillagers.WolfLab.Logic.GameLogic
 {
@@ -11,7 +11,7 @@ namespace EatVillagers.WolfLab.Logic.GameLogic
         {
             level = InvertLevel(level); //a "high" should be "low" difficulty
             var difficulty = Difficulty(level);
-            var roll = 1.d(100).Roll();
+            var roll = Rng.RollD(100);
 
             return roll >= difficulty;
         }

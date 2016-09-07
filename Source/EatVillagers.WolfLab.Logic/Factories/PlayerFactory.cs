@@ -12,12 +12,10 @@ namespace EatVillagers.WolfLab.Logic.Factories
     public class PlayerFactory
     {
         private readonly GameOptions Options;
-        private readonly Random Rnd;
 
-        public PlayerFactory(GameOptions options, Random rnd)
+        public PlayerFactory(GameOptions options)
         {
             Options = options;
-            Rnd = rnd;
         }
 
         public List<PlayerModel> CreatePopulation()
@@ -36,7 +34,7 @@ namespace EatVillagers.WolfLab.Logic.Factories
             {
                 ID = $"P{count}",
                 Name = $"P{count}",
-                Skill = SkillBuilder.GetSkill(Teams.Good, Options, Rnd),
+                Skill = SkillBuilder.GetSkill(Teams.Good, Options),
                 Traits = GenerateTraits()
             };
 

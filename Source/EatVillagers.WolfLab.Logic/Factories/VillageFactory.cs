@@ -15,15 +15,13 @@ namespace EatVillagers.WolfLab.Logic.Factories
         private readonly CharacterFactory CharacterFactory;
         private readonly GameOptions Options;
         private readonly NextList<PlayerModel> Population; //raw players that need roles
-        private readonly Random Rnd;
 
-        private VillageFactory(GameOptions options, List<PlayerModel> population, Random rnd)
+        private VillageFactory(GameOptions options, List<PlayerModel> population)
         {
             Options = options;
-            Rnd = rnd;
             Population = new NextList<PlayerModel>(population);
             Village = new VillageModel();
-            CharacterFactory = new CharacterFactory(options, Village, Rnd);          
+            CharacterFactory = new CharacterFactory(options, Village);          
         }
 
         public VillageModel Create()
@@ -77,11 +75,17 @@ namespace EatVillagers.WolfLab.Logic.Factories
 
         private void PopulateSpecialGood()
         {
-            var seer = CharacterFactory.CreateSeer(Population.GetNext(), 0);
-            Village.Players.Add(seer);
+            for (var i = 0; i < Options.SeerCount; i++)
+            {
+                var seer = CharacterFactory.CreateSeer(Population.GetNext(), i);
+                Village.Players.Add(seer);
+            }
 
-            var hunter = CharacterFactory.CreateHunter(Population.GetNext(), 0);
-            Village.Players.Add(hunter);
+            for (var i = 0; i < Options.HunterCount; i++)
+            {
+                var hunter = CharacterFactory.CreateHunter(Population.GetNext(), i);
+                Village.Players.Add(hunter);
+            }
         }
 
         private void PopulateVillagers()
@@ -120,12 +124,12 @@ namespace EatVillagers.WolfLab.Logic.Factories
             Village.Opinions.Add(opinion);
         }
 
-        public static VillageModel CreateVillage(GameOptions options, Random rnd)
+        public static VillageModel CreateVillage(GameOptions options)
         {
-            var playerFactory = new PlayerFactory(options, rnd);
+            var playerFactory = new PlayerFactory(options);
             var population = playerFactory.CreatePopulation();
 
-            return CreateVillage(options, population, rnd);
+            return CreateVillage(options, population);
         }
 
         /// <summary>
@@ -133,11 +137,11 @@ namespace EatVillagers.WolfLab.Logic.Factories
         /// will be assigned roles, but their traits and skill level could be persisted
         /// across games,
         /// </summary>
-        public static VillageModel CreateVillage(GameOptions options, List<PlayerModel> population, Random rnd)
+        public static VillageModel CreateVillage(GameOptions options, List<PlayerModel> population)
         {
             population = population.Shuffle(); //Re-ordering the players is like making the players
                                                //move to different seats instead of shuffling the deck.
-            var factory = new VillageFactory(options, population, rnd);
+            var factory = new VillageFactory(options, population);
 
             return factory.Create();
         }

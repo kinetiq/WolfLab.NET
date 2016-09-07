@@ -9,13 +9,11 @@ namespace EatVillagers.WolfLab.Logic.GameLogic
     {
         private GameOptions Options;
         private readonly VillageModel Village;
-        private readonly Random Rnd;
 
-        public NightLogic(GameOptions options, VillageModel village, Random rnd)
+        public NightLogic(GameOptions options, VillageModel village)
         {
             Options = options;
             Village = village;
-            Rnd = rnd;
         }
 
         public void ExecuteNight()

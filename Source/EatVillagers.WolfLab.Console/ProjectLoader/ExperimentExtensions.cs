@@ -27,7 +27,13 @@ namespace EatVillagers.WolfLab.Console.ProjectLoader
             switch (variableName.ToLower())
             {
                 case "lynchrule":
-                    ApplyLynchRule(value, options);
+                    options.LynchRules = value.ToEnum<LynchRules>();
+                    break;
+                case "seercount":
+                    options.SeerCount = value.ToInt32();
+                    break;
+                case "huntercount":
+                    options.HunterCount = value.ToInt32();
                     break;
                 default:
                     throw new InvalidOperationException("Unexpected Variable Name: " + variableName);
@@ -36,8 +42,6 @@ namespace EatVillagers.WolfLab.Console.ProjectLoader
 
         private static void ApplyLynchRule(string value, GameOptions options)
         {
-            var rule = value.ToEnum<LynchRules>();
-            options.LynchRules = rule;
         }
     }
 }

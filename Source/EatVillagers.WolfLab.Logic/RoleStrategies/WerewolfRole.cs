@@ -16,13 +16,6 @@ namespace EatVillagers.WolfLab.Logic.RoleStrategies
             return Roles.Werewolf;
         }
 
-        public override void ExecuteDayAction()
-        {
-            //TODO: foment chaos.
-
-            return;
-        }
-
         public override void ExecuteNightAction()
         {
             EatIfLeadWolf();

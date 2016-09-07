@@ -16,7 +16,7 @@ namespace EatVillagers.WolfLab.Console.ProjectLoader
             var options = new GameOptions()
             {
                 CrunchMode = project.CrunchMode,
-                VillageSize = project.MinVillage,
+                VillageSize = project.MinVillage,               
             };
 
             return options;

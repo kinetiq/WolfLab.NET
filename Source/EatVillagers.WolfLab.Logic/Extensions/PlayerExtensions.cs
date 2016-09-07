@@ -31,7 +31,7 @@ namespace EatVillagers.WolfLab.Logic.Extensions
             switch (player.Team())
             {
                 case Teams.Good:
-                    return (!opinion.IsCleared && opinion.Aggro > .6m); //TODO: more interesting threshold
+                    return (!opinion.IsCleared && opinion.Aggro >= .6m); //TODO: more interesting threshold
                 case Teams.Evil:
                     return (!opinion.IsEvil);
                 default:

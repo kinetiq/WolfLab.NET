@@ -8,9 +8,10 @@ namespace EatVillagers.WolfLab.Logic.Analytics
     public class LogSingleton
     {
         public static readonly LogSingleton Instance = new LogSingleton();
-
+        
         public List<string> GameLog;
         public List<string> TurnLog;
+        public bool Enabled = true;
 
         private LogSingleton()
         {
@@ -24,8 +25,16 @@ namespace EatVillagers.WolfLab.Logic.Analytics
     /// </summary>
     public static class Log
     {
+        public static void Disable()
+        {
+            LogSingleton.Instance.Enabled = false;
+        }
+
         public static void Write(string log)
         {
+            if (!LogSingleton.Instance.Enabled)
+                return;
+
             LogSingleton.Instance.GameLog.Add(log);
             LogSingleton.Instance.TurnLog.Add(log);
         }

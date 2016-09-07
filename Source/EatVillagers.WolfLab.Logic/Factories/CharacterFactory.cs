@@ -9,13 +9,11 @@ namespace EatVillagers.WolfLab.Logic.Factories
     {
         private readonly GameOptions Options;
         private readonly VillageModel Village;
-        private readonly Random Rnd;
 
-        public CharacterFactory(GameOptions options, VillageModel village, Random rnd)
+        public CharacterFactory(GameOptions options, VillageModel village)
         {
             Options = options;
             Village = village;
-            Rnd = rnd;
         }
 
         public PlayerModel CreateSeer(PlayerModel player, int count)

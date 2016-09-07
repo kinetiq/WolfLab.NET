@@ -1,8 +1,9 @@
 ﻿using System;
+using EatVillagers.WolfLab.Logic.Analytics;
 using EatVillagers.WolfLab.Logic.Extensions;
 using EatVillagers.WolfLab.Logic.Models;
 using EatVillagers.WolfLab.Logic.Models.Enums;
-using NDiceBag;
+using EatVillagers.WolfLab.Logic.RandomNumbers;
 
 namespace EatVillagers.WolfLab.Logic.GameLogic
 {
@@ -10,18 +11,24 @@ namespace EatVillagers.WolfLab.Logic.GameLogic
     {
         public static Levels Generate(PlayerModel player)
         {
-            var roll = 1.d(100)
-                        .Plus(player.Team() == Teams.Evil ? 10 : 0) //10% penalty for evil.
-                        .Minus(player.Skill) //0%-10% bonus for skill.
-                        .Roll();
+            var ceiling = 100;
 
-            if (roll >= 95)
-                return Levels.High;
+            if (player.Team() == Teams.Evil)
+                ceiling = ceiling + 10;
+
+            ceiling = ceiling - player.Skill;
+
+            var roll = Rng.RollD(ceiling);
+
+            Log.Write(roll.ToString());
 
             if (roll >= 90)
+                return Levels.High;
+
+            if (roll >= 75)
                 return Levels.Medium;
 
-            if (roll >= 85)
+            if (roll >= 70)
                 return Levels.Low;
 
             return Levels.None;

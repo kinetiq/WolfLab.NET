@@ -13,10 +13,11 @@ namespace EatVillagers.WolfLab.Logic.Analytics.Export
         public ExperimentMap()
         {
             Map(x => x.Name);
-            Map(x => x.Villagers);
+            Map(x => x.Village);
             Map(x => x.Wolves);
             Map(x => x.GoodWins);
             Map(x => x.EvilWins);
+            Map(x => x.GoodWinPercentage);
         }
 
     }

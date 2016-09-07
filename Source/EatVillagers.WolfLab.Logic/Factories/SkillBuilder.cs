@@ -1,13 +1,14 @@
 ﻿using System;
 using EatVillagers.WolfLab.Logic.Models.Enums;
+using EatVillagers.WolfLab.Logic.RandomNumbers;
 
 namespace EatVillagers.WolfLab.Logic.Factories
 {
     public static class SkillBuilder
     {
-        public static int GetSkill(Teams team, GameOptions options, Random rnd)
+        public static int GetSkill(Teams team, GameOptions options)
         {
-            var baseSkill = GetBaseSkill(options, rnd);
+            var baseSkill = GetBaseSkill(options);
 
             switch (team)
             {
@@ -30,11 +31,10 @@ namespace EatVillagers.WolfLab.Logic.Factories
             return baseSkill;
         }
 
-        private static int GetBaseSkill(GameOptions options, Random rnd)
+        private static int GetBaseSkill(GameOptions options)
         {
             var skill = options.AverageSkill;
-
-            var roll = rnd.Next(1, 17);
+            var roll = Rng.RollD(16);
 
             //Poor man's gaussian random!
             switch (roll)

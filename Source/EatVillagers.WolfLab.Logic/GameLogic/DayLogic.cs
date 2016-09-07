@@ -1,9 +1,6 @@
-﻿using System;
-using EatVillagers.WolfLab.Logic.Analytics;
-using EatVillagers.WolfLab.Logic.Extensions;
+﻿using EatVillagers.WolfLab.Logic.Extensions;
 using EatVillagers.WolfLab.Logic.Factories;
 using EatVillagers.WolfLab.Logic.Models;
-using EatVillagers.WolfLab.Logic.Models.Enums;
 
 namespace EatVillagers.WolfLab.Logic.GameLogic
 {
@@ -11,13 +8,11 @@ namespace EatVillagers.WolfLab.Logic.GameLogic
     {
         private GameOptions Options;
         private readonly VillageModel Village;
-        private readonly Random Rnd;
 
-        public DayLogic(GameOptions options, VillageModel village, Random rnd)
+        public DayLogic(GameOptions options, VillageModel village)
         {
             Options = options;
             Village = village;
-            Rnd = rnd;
         }
 
         public void ExecuteDay()

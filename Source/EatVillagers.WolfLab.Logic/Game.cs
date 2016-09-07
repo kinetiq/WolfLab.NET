@@ -17,19 +17,18 @@ namespace EatVillagers.WolfLab.Logic
         public VillageModel Village;
         public int Day;
         private readonly GameOptions Options;
-        private readonly Random Rnd;
 
         public Game(GameOptions options)
         {
             Options = options;
-            Rnd = new Random();           
+       
             Day = 0;   
         }
 
         public void ExecuteGameLoop()
         {
             Day = 0;
-            Village = VillageFactory.CreateVillage(Options, Rnd);
+            Village = VillageFactory.CreateVillage(Options);
 
             do
             {
@@ -53,8 +52,8 @@ namespace EatVillagers.WolfLab.Logic
         #region "Turn Logic"
         private void ExecuteTurn()
         {
-            var dayLogic = new DayLogic(Options, Village, Rnd);
-            var nightLogic = new NightLogic(Options, Village, Rnd);
+            var dayLogic = new DayLogic(Options, Village);
+            var nightLogic = new NightLogic(Options, Village);
 
             dayLogic.ExecuteDay();
             ShowDayLog();

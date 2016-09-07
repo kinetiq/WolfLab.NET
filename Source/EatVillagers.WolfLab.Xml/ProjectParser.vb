@@ -53,11 +53,26 @@ Public Class ProjectParser
                 If Not value.In("NoRules".ToLower(), "MustLynchFirstDay".ToLower(), "MustLynchAlways".ToLower()) Then
                     Throw New InvalidOperationException($"Invalid value for {key}: {value}")
                 End If
-
+            Case "SeerCount".ToLower()              
+                CheckNonNegativeInt32(key, value)
+            Case "HunterCount".ToLower()
+                CheckNonNegativeInt32(key, value)
             Case Else
                 Throw New InvalidOperationException("Unexpected Variable: " + key)
         End Select
     End Sub
+
+    Private sub CheckNonNegativeInt32(key As string, value As String)
+        If Not value.IsValidInt32()
+            Throw New InvalidOperationException($"Variable {key} must be an Integer.")
+        End If
+
+        If value.ToInt32() < 0 
+            Throw New InvalidOperationException($"Variable {key} must be zero or positive (Actual: {value})")
+        End If
+    End sub
+
+
 
     Private Function GetCrunchMode() As Boolean
         Dim Value = Doc.<project>.@crunchMode
@@ -79,12 +94,12 @@ Public Class ProjectParser
     End Function
 
     Private Function GetMinVillage() As Integer
-        Return GetValue("minVillage", Doc.<project>.@minVillage, 7, 5, 20)
+        Return GetValue("minVillage", Doc.<project>.@minVillage, 7, 4, 20)
     End Function
 
     Private Function GetMaxVillage() As Integer
         Dim Min = GetMinVillage()
-        Dim Max = GetValue("maxVillage", Doc.<project>.@minVillage, 10, 5, 20)
+        Dim Max = GetValue("maxVillage", Doc.<project>.@maxVillage, 10, 4, 20)
 
         If Min > Max Then
             Throw New InvalidOperationException($"MinVillage ({Min}) is larger than MaxVillage ({Max}). This is not allowed.")
