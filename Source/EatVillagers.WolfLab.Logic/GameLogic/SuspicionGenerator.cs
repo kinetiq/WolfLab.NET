@@ -20,8 +20,6 @@ namespace EatVillagers.WolfLab.Logic.GameLogic
 
             var roll = Rng.RollD(ceiling);
 
-            Log.Write(roll.ToString());
-
             if (roll >= 90)
                 return Levels.High;
 

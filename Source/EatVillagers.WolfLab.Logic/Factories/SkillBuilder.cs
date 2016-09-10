@@ -36,7 +36,7 @@ namespace EatVillagers.WolfLab.Logic.Factories
             var skill = options.AverageSkill;
             var roll = Rng.RollD(16);
 
-            //Poor man's gaussian random!
+            //Poor (destitute) man's gaussian random!
             switch (roll)
             {
                 case 1:

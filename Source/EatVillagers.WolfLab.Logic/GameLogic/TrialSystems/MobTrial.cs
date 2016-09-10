@@ -15,12 +15,18 @@ namespace EatVillagers.WolfLab.Logic.GameLogic.TrialSystems
 
         public override void ExecuteTrial()
         {
+            if(Village.Options.LynchRules == LynchRules.NeverLynchFirstDay && Village.Day == 1)
+            {
+                Log.Write("The mob never lynches on the first day.");
+                return;
+            }
+
             var voters = Village.LivingPlayers().Count - 1;
             var lynchRequirement = Math.Ceiling((decimal) voters / 2) + 1;
 
-            //not really attempting to model the particulars of the mob mentality here.
-            //yet. We start with the most aggro candidates and vote until we kill,
-            //or we run out of candidates.
+            //Not really attempting to model the particulars of the jury system here...
+            //Yet. We start with the most aggro candidates and vote until we either kill,
+            //or run out of candidates.
 
             var candidates = Village.LivingPlayers()
                                     .OrderByDescending(x => x.AverageAggro())
@@ -50,8 +56,6 @@ namespace EatVillagers.WolfLab.Logic.GameLogic.TrialSystems
                 }
             }
 
-
-
             switch (Village.Options.LynchRules)
             {
                 case LynchRules.NoRules:
@@ -74,6 +78,8 @@ namespace EatVillagers.WolfLab.Logic.GameLogic.TrialSystems
 
                     Log.Write("The mob fails to lynch anyone today.");
 
+                    break;
+                case LynchRules.NeverLynchFirstDay:
                     break;
                 default:
                     throw new InvalidOperationException("Unexpected: " + Village.Options.LynchRules);

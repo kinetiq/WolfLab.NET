@@ -11,5 +11,6 @@ namespace EatVillagers.WolfLab.Logic.Models.Enums
         NoRules = 1,
         MustLynchFirstDay = 2,
         MustLynchAlways = 3,
+        NeverLynchFirstDay = 4
     }
 }

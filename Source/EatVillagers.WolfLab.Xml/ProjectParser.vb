@@ -50,7 +50,10 @@ Public Class ProjectParser
 
         Select Case key
             Case "LynchRule".ToLower()
-                If Not value.In("NoRules".ToLower(), "MustLynchFirstDay".ToLower(), "MustLynchAlways".ToLower()) Then
+                'TODO: use the enum directly to determine validity...
+                'Dim x = [Enum].GetValues(GetType(LynchRules)).Cast(Of LynchRules)().ToList()
+
+                If Not value.In("NoRules".ToLower(), "MustLynchFirstDay".ToLower(), "MustLynchAlways".ToLower(), "NeverLynchFirstDay".ToLower()) Then
                     Throw New InvalidOperationException($"Invalid value for {key}: {value}")
                 End If
             Case "SeerCount".ToLower()              

@@ -6,7 +6,8 @@ namespace EatVillagers.WolfLab.Logic.RoleStrategies
 {
     /// <summary>
     /// This exists as a placeholder for players who haven't been assigned a role
-    /// yet. It throws if the role isn't assigned. 
+    /// yet. If this role makes it into the game somehow, it will throw exceptions
+    /// becuase that shouldn't happen.
     /// </summary>
     public class SpectatorRole : RoleBase
     {

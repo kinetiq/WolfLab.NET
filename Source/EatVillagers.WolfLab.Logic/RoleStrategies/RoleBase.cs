@@ -19,8 +19,11 @@ namespace EatVillagers.WolfLab.Logic.RoleStrategies
 
         public virtual void ExecuteDayAction()
         {
-            //Okay, I'm a villager. What do I do?
-            //Determine an action. Observe, Question,  
+            //Each day, villagers should have a chance to look more (or less) suspicious 
+            //to the other players. 
+            //
+            //
+            //
 
             var suspicionLevel = SuspicionGenerator.Generate(Player);
             Responses.HandleGoodResponseToSuspiciousBehavior(Player, suspicionLevel);

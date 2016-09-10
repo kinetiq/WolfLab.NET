@@ -20,13 +20,13 @@ namespace EatVillagers.WolfLab.Console
             var game = new Game(options);
 
             var totalExperiments = project.Experiments.Count;
-            var currentExperiment = 0; 
- 
+            var currentExperiment = 0;
+
             //In our settings, we specify a lot of permutations: a range of villagers, 
             //a set of experiments, and a count of samples to run per permutation. If
             //minVillagers is 5, maxVillagers is 10, samples is 1000, and we specify 
-            //2 experiments... Permutations is (5 * 10 * 1000 * 2 * (wolves)) games. 
-            //What is "wo
+            //2 experiments... 
+            //Permutations is (6 villager sets * 1000 samples * 2 experiments) games. 
             foreach (var exp in project.Experiments)
             {
                 currentExperiment++;
@@ -34,7 +34,7 @@ namespace EatVillagers.WolfLab.Console
                 //Modify Options based on variables in experiment.
                 exp.UpdateGameOptions(options);
 
-                //TODO: refactor the hell out of all this.
+                //TODO: refactor this. 
                 for (var villagers = project.MinVillage; villagers <= project.MaxVillage; villagers++)
                 {
                     var maxWolves = (villagers / 2) - 1; 
