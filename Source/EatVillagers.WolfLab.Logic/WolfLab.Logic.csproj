@@ -85,8 +85,10 @@
     <Compile Include="Game.cs" />
     <Compile Include="GameLogic\DayLogic.cs" />
     <Compile Include="GameLogic\NightLogic.cs" />
+    <Compile Include="GameLogic\Perceptions\InfluencePolarity.cs" />
+    <Compile Include="GameLogic\Signal.cs" />
+    <Compile Include="GameLogic\PerceptionGenerator.cs" />
     <Compile Include="GameLogic\Responses.cs" />
-    <Compile Include="GameLogic\SuspicionGenerator.cs" />
     <Compile Include="GameLogic\PlayerChecks.cs" />
     <Compile Include="GameLogic\TrialSystems\MobTrial.cs" />
     <Compile Include="GameLogic\TrialSystems\TrialBase.cs" />

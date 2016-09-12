@@ -39,7 +39,7 @@ namespace EatVillagers.WolfLab.Logic.Extensions
             }
         }
 
-        public static decimal AverageAggro(this PlayerModel player)
+        public static decimal NetAggro(this PlayerModel player)
         {
             var village = player.Village;
 

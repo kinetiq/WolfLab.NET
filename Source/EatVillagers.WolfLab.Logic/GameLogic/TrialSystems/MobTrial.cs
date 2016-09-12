@@ -29,13 +29,13 @@ namespace EatVillagers.WolfLab.Logic.GameLogic.TrialSystems
             //or run out of candidates.
 
             var candidates = Village.LivingPlayers()
-                                    .OrderByDescending(x => x.AverageAggro())
+                                    .OrderByDescending(x => x.NetAggro())
                                     .ThenBy(x => new Guid()) //randomize ties
                                     .ToList();
 
             foreach (var candidate in candidates)
             {
-                Log.Write($"{candidate.Name} draws the attention of the mob... ({candidate.AverageAggro()} aggro)");
+                Log.Write($"{candidate.Name} draws the attention of the mob... ({candidate.NetAggro()} aggro)");
 
                 var defenseResult = candidate.RoleLogic.ExecuteTrialDefense();
                 base.ApplyDefenseResult(defenseResult);

@@ -1,6 +1,6 @@
 ﻿using EatVillagers.WolfLab.Logic.Models;
 
-namespace EatVillagers.WolfLab.Logic.RoleStrategies
+namespace EatVillagers.WolfLab.Logic.GameLogic.TrialSystems
 {
     /// <summary>
     /// Contains details on how much potential a trial has for swaying

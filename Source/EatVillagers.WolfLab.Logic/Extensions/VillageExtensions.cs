@@ -45,7 +45,6 @@ namespace EatVillagers.WolfLab.Logic.Extensions
             return village.Players
                           .Count
                           .IsOdd();
-
         }
 
         /// <summary>
@@ -111,7 +110,6 @@ namespace EatVillagers.WolfLab.Logic.Extensions
             return village.Players
                           .Where(x => x.IsAlive)
                           .ToList();
-
         }
 
         public static List<PlayerModel> LivingGoodPlayers(this VillageModel village)

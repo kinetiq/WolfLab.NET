@@ -2,6 +2,7 @@
 using System.Linq;
 using EatVillagers.WolfLab.Logic.Analytics;
 using EatVillagers.WolfLab.Logic.Extensions;
+using EatVillagers.WolfLab.Logic.GameLogic.TrialSystems;
 using EatVillagers.WolfLab.Logic.Models;
 using EatVillagers.WolfLab.Logic.Models.Enums;
 
