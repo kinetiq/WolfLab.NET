@@ -58,8 +58,16 @@ Public Class ProjectParser
                 End If
             Case "SeerCount".ToLower()              
                 CheckNonNegativeInt32(key, value)
+            Case "SeerPercentScannedThreshold".ToLower()
+                CheckNonNegativeDecimal(key, value)
+            Case "SeerWolfPercentThreshold".ToLower()
+                CheckNonNegativeDecimal(key, value)
+            Case "SeerLivingScanCountThreshold".ToLower()
+                CheckNonNegativeDecimal(key, value)
+            Case "SeerWolfCountThreshold".ToLower()
+                CheckNonNegativeDecimal(key, value)
             Case "HunterCount".ToLower()
-                CheckNonNegativeInt32(key, value)
+                CheckNonNegativeInt32(key, value)            
             Case Else
                 Throw New InvalidOperationException("Unexpected Variable: " + key)
         End Select
@@ -71,6 +79,16 @@ Public Class ProjectParser
         End If
 
         If value.ToInt32() < 0 
+            Throw New InvalidOperationException($"Variable {key} must be zero or positive (Actual: {value})")
+        End If
+    End sub
+
+    Private sub CheckNonNegativeDecimal(key As string, value As String)
+        If Not value.IsValidDecimal()
+            Throw New InvalidOperationException($"Variable {key} must be an Integer.")
+        End If
+
+        If value.ToDecimal() < 0 
             Throw New InvalidOperationException($"Variable {key} must be zero or positive (Actual: {value})")
         End If
     End sub

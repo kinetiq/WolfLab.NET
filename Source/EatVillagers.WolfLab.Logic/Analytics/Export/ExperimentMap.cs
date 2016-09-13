@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using CsvHelper.Configuration;
+using Z.Core.Extensions;
 
 namespace EatVillagers.WolfLab.Logic.Analytics.Export
 {
@@ -18,7 +19,6 @@ namespace EatVillagers.WolfLab.Logic.Analytics.Export
             Map(x => x.GoodWins);
             Map(x => x.EvilWins);
             Map(x => x.GoodWinPercentage);
-        }
-
+        }     
     }
 }

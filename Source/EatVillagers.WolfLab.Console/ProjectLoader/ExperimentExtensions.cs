@@ -35,6 +35,18 @@ namespace EatVillagers.WolfLab.Console.ProjectLoader
                 case "huntercount":
                     options.HunterCount = value.ToInt32();
                     break;
+                case "seerpercentscannedthreshold":
+                    options.SeerPercentScannedThreshold = value.ToDecimal();
+                    break;
+                case "seerwolfpercentthreshold":
+                    options.SeerWolfPercentThreshold = value.ToDecimal();
+                    break;
+                case "seerwolfcountthreshold":
+                    options.SeerWolfCountThreshold = value.ToInt32();
+                    break;
+                case "seerlivingscancountthreshold":
+                    options.SeerLivingScanCountThreshold = value.ToInt32();
+                    break;
                 default:
                     throw new InvalidOperationException("Unexpected Variable Name: " + variableName);
             }

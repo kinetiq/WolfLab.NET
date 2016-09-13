@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Text;
 using CsvHelper;
 using EatVillagers.WolfLab.Logic.Analytics.Export;
+using WolfLab.Core.Configuration;
 
 namespace EatVillagers.WolfLab.Logic.Analytics
 {
@@ -21,8 +23,8 @@ namespace EatVillagers.WolfLab.Logic.Analytics
         {
             StatsSingleton.Instance.CompleteExperiment();
         }
-        
-        public static void WriteExperiments(string path)
+
+        public static void WriteRaw(string path)
         {
             using (var writer = File.CreateText(path))
             {
@@ -33,6 +35,61 @@ namespace EatVillagers.WolfLab.Logic.Analytics
             }
         }
 
+
+        public static void WritePivoted(string path, ProjectModel project)
+        {
+            using (var writer = File.CreateText(path))
+            {
+                writer.Write(GetCsvBody(project));
+            }
+        }
+
+        private static string GetCsvBody(ProjectModel project)
+        {
+            var builder = new StringBuilder();
+
+            //header
+            builder.Append("Villagers, Wolves, ");
+            
+            Stats.Experiments
+                 .GroupBy(x => x.Name)     
+                 .Select(x => x.First())              //this gets distinct names
+                 .OrderBy(x => x.Number)              //sorts them
+                 .Aggregate(builder, (current, ex) => //concatenates them 
+                            current.Append(Sanitize(ex.Name) + ", "));
+
+            builder.AppendLine();
+
+            //COMPLEXITY!
+            for (var villagers = project.MinVillage; villagers <= project.MaxVillage; villagers++)
+            {
+                var maxWolves = (villagers/2) - 1;
+
+                for (var wolves = 1; wolves <= maxWolves; wolves++)
+                {
+                    builder.Append($"{villagers}, {wolves}, ");
+
+                    var experiments = Experiments.Where(x => x.Village == villagers &&
+                                                             x.Wolves == wolves)
+                                                 .OrderBy(x => x.Number)
+                                                 .ToList();
+
+                    experiments.Aggregate(builder, (current, ex) =>
+                                                   current.Append(ex.GoodWinPercentage + ", "));
+
+                    builder.AppendLine();
+                }
+            }
+
+            return builder.ToString();
+        }
+
+        private static string Sanitize(string source)
+        {
+            return source.Replace("\"", "'")
+                         .Replace(",", "");
+        }
+ 
         #region "Calculations"
 
         public static decimal GoodWinPercent()

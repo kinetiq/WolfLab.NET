@@ -10,6 +10,7 @@ namespace EatVillagers.WolfLab.Logic.Analytics
     public class Experiment
     {
         public string Name { get; set; }
+        public int Number { get; set; }
         public int Village { get; set; }
         public int Wolves { get; set; }
         public int GoodWins { get; set; }

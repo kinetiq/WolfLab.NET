@@ -34,19 +34,24 @@ namespace EatVillagers.WolfLab.Console
                 //Modify Options based on variables in experiment.
                 exp.UpdateGameOptions(options);
 
+                var experimentIndex = 0;
+
                 //TODO: refactor this. 
                 for (var villagers = project.MinVillage; villagers <= project.MaxVillage; villagers++)
                 {
                     var maxWolves = (villagers / 2) - 1; 
 
                     for (var wolves = 1; wolves <= maxWolves; wolves++)
-                    {
+                    {                        
                         var experiment = new Experiment()
                         {
-                            Name = $"{exp.Name}: {villagers}V with {wolves}W",
+                            Name = $"{exp.Name}",  //: {villagers}V with {wolves}W"
+                            Number = experimentIndex,
                             Village = villagers,
                             Wolves = wolves
                         };
+
+                        experimentIndex++;
 
                         Stats.StartNewExperiment(experiment);
 
@@ -69,7 +74,7 @@ namespace EatVillagers.WolfLab.Console
                 }
             }
 
-            ProcessEnding();        
+            ProcessEnding(project);        
         }
 
         private static ProjectModel LoadProjectFile()
@@ -91,7 +96,7 @@ namespace EatVillagers.WolfLab.Console
         /// <summary>
         /// Write the end of game text and save data to a spreadsheet.
         /// </summary>
-        private static void ProcessEnding()
+        private static void ProcessEnding(ProjectModel project)
         {
             //Statistics
             Colorful.Console.Clear();
@@ -102,7 +107,8 @@ namespace EatVillagers.WolfLab.Console
             Colorful.Console.WriteLine("Duration: " + Stats.GetTimespan().Humanize(), Color.LightGray);
             Colorful.Console.WriteLine("Saving...", Color.LightGray);
 
-            Stats.WriteExperiments("D:/wolf.csv");
+            Stats.WriteRaw("D:/wolf_raw.csv");
+            Stats.WritePivoted("D:/wolf.csv", project);
 
             Colorful.Console.WriteLine();
             Colorful.Console.WriteLine();

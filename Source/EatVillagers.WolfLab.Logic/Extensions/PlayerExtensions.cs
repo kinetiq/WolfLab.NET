@@ -169,8 +169,9 @@ namespace EatVillagers.WolfLab.Logic.Extensions
                 throw new InvalidOperationException();
 
             if (player.IsClaimed) //reveal every turn after claiming!
-                return true; 
+                return true;
 
+            var options = player.Village.Options;
             var village = player.Village;
             var totalAlive = village.LivingPlayers().Count;
             var wolvesAlive = village.LivingWolvesCount();
@@ -178,13 +179,17 @@ namespace EatVillagers.WolfLab.Logic.Extensions
             var cleared = player.VillagersClearedCount();
             var totalScanned = wolvesCaught + cleared + 1; //+1 for self-knowledge!
 
-            var percentScanned = (decimal) totalScanned / (totalAlive);
-            var halfTheWolves = (decimal) wolvesAlive/2;
+            var percentScanned = (decimal) totalScanned / totalAlive;
+            var percentCaught = (wolvesCaught == 0) ? 0m : (decimal) wolvesAlive/ wolvesCaught;
+            //var halfTheWolves = (decimal) wolvesAlive/2;
 
-            if (percentScanned >= .5m) //at >= .5, that's a lot of valuable data.
+            if (percentScanned >= options.SeerPercentScannedThreshold) //default: 50%
                 return true;
 
-            if (wolvesCaught >= halfTheWolves) //half the wolves caught - time to reveal.
+            if (percentCaught >= options.SeerWolfPercentThreshold) //defualt: 50%
+                return true;
+
+            if (wolvesCaught >= options.SeerWolfCountThreshold) //default: never happens.
                 return true;
 
             return false; 

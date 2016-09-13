@@ -122,6 +122,12 @@
     <Folder Include="Helpers\" />
     <Folder Include="Tournaments\" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\WolfLab.Core\WolfLab.Core.csproj">
+      <Project>{37b7747e-b868-4ce4-b1e3-833f97039bae}</Project>
+      <Name>WolfLab.Core</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
